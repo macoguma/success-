@@ -4,165 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oguma Austine | Resilience & Success</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --bg: #ffffff; 
-            --text: #1a1a1a; 
-            --accent: #b8860b; 
-            --muted: #f9f9f9; 
-            --white: #ffffff; 
-            --neon: #00f3ff; /* Neon Cyan */
-            --neon-glow: rgba(0, 243, 255, 0.6);
-        }
-        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; overflow-x: hidden; }
+        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --white: #ffffff; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
         
-        /* Neon Dashboard Bar */
-        .dashboard-bar {
-            background: #000;
-            color: #fff;
-            padding: 12px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            border-bottom: 2px solid #222;
-        }
-
-        #live-time {
-            color: var(--neon);
-            text-shadow: 0 0 8px var(--neon-glow), 0 0 15px var(--neon-glow);
-            letter-spacing: 1px;
-            animation: flicker 3s infinite alternate;
-        }
-
-        .battery-container { 
-            color: var(--neon);
-            text-shadow: 0 0 5px var(--neon-glow);
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-        }
-
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-            20%, 22%, 24%, 55% { opacity: 0.8; }
-        }
-
         /* Navigation */
-        nav { padding: 1.5rem 10%; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; background: white; position: sticky; top: 0; z-index: 100; }
+        nav { 
+            padding: 1rem 10%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-bottom: 1px solid #eee; 
+            background: white; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+        }
         .logo { font-weight: 700; letter-spacing: 2px; color: var(--text); text-decoration: none; }
-
-        /* Hero & Sections */
-        .hero { padding: 8% 10% 12% 10%; text-align: center; background: linear-gradient(to bottom, #fff, var(--muted)); }
-        .greeting-text { color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1.5rem; color: #000; margin-top: 0; }
         
+        /* Subtle Clock in Nav */
+        #nav-clock { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #888; }
+
+        /* Hero Section */
+        .hero { padding: 12% 10%; text-align: center; background: linear-gradient(to bottom, #fff, var(--muted)); }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1.5rem; color: #000; }
+        .hero p { font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto 2rem auto; }
+        .greeting-msg { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
+
+        /* Quote of the Day Card */
         .quote-card { 
-            background: var(--white); padding: 3.5rem 2rem; margin: -50px 10% 50px 10%; border-radius: 12px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--accent);
+            background: var(--white); 
+            padding: 3rem 2rem; 
+            margin: -50px 10% 50px 10%; 
+            border-radius: 12px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05); 
+            text-align: center;
+            border-top: 4px solid var(--accent);
             position: relative;
         }
-        .quote-text { font-size: 1.4rem; font-style: italic; color: #333; margin-bottom: 1rem; transition: opacity 0.4s; }
+        .quote-text { font-size: 1.4rem; font-style: italic; color: #333; margin-bottom: 1rem; }
+        .quote-author { font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem; }
+
+        /* About Section */
+        .content { padding: 5% 10%; }
+        .profile-card { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+        .profile-img { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         
-        .refresh-btn { background: none; border: 1px solid #ddd; color: #888; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 0.7rem; transition: 0.3s; }
-        .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .btn { 
+            display: inline-block; 
+            padding: 1rem 2rem; 
+            background: var(--text); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-weight: 600; 
+            transition: 0.3s;
+            margin-top: 1.5rem;
+        }
+        .btn:hover { background: var(--accent); transform: translateY(-2px); }
 
-        .btn { display: inline-block; padding: 1rem 2rem; background: var(--text); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; transition: 0.3s; margin-top: 1.5rem; }
-        .btn:hover { background: var(--accent); transform: translateY(-3px); }
+        footer { padding: 4rem; text-align: center; color: #999; font-size: 0.9rem; background: #fafafa; }
 
+        /* WhatsApp Floating Button */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; 
             background-color: #25d366; color: #FFF; border-radius: 50px; 
-            display: flex; align-items: center; justify-content: center; 
-            text-decoration: none; z-index: 1000; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            text-align: center; font-size: 30px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
+            z-index: 1000; display: flex; align-items: center; justify-content: center; 
+            text-decoration: none;
         }
 
-        footer { padding: 4rem; text-align: center; color: #999; font-size: 0.8rem; background: #fafafa; }
-
-        @media (min-width: 900px) { .hero h1 { font-size: 4rem; } }
+        /* Responsive */
+        @media (min-width: 900px) { 
+            .profile-card { grid-template-columns: 1fr 1.2fr; } 
+            .hero h1 { font-size: 4rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="dashboard-bar">
-        <div id="live-time">00:00:00</div>
-        <div id="battery-info" class="battery-container">BATTERY: --%</div>
-    </div>
-
-    <nav><a href="#" class="logo">OGUMA AUSTINE</a></nav>
+    <nav>
+        <a href="#" class="logo">OGUMA AUSTINE</a>
+        <div id="nav-clock">00:00:00</div>
+    </nav>
 
     <header class="hero">
-        <span class="greeting-text" id="greeting">Hello!</span>
+        <span class="greeting-msg" id="greeting">WELCOME</span>
         <h1>Resilience is the <br>Bridge to Success.</h1>
-        <p>Providing the encouragement and mindset shifts you need to cross the finish line.</p>
-        <a href="https://wa.me/254793378439" class="btn">Get Started Now</a>
+        <p>Providing the encouragement and mindset shifts you need to cross the finish line, no matter the obstacles.</p>
+        <a href="https://wa.me/254793378439?text=Hi%20Austine,%20I'm%20ready%20to%20start%20my%20success%20journey!" class="btn">Get Started Now</a>
     </header>
 
     <div class="quote-card">
-        <div class="quote-text" id="quote">"The path to success is to take massive, determined action."</div>
-        <div class="quote-author" id="author">— Daily Insight by Austine</div>
-        <button class="refresh-btn" onclick="newQuote()">GET NEW INSIGHT</button>
+        <div class="quote-text">"The path to success is to take massive, determined action. Focus on starting."</div>
+        <div class="quote-author">— Daily Insight by Austine</div>
     </div>
+
+    <section class="content">
+        <div class="profile-card">
+            <img src="austine.jpg" alt="Oguma Austine" class="profile-img">
+            <div>
+                <h2 style="font-family:'Playfair Display'; font-size: 2.5rem;">My Mission</h2>
+                <p>I believe that every setback is a setup for a comeback. My platform is dedicated to helping individuals like you develop the mental toughness required to achieve your dreams.</p>
+                <p>Whether you are a student, an entrepreneur, or someone facing a personal challenge, remember: <strong>Don't give up. Your breakthrough is closer than you think.</strong></p>
+                <a href="https://wa.me/254793378439" class="btn" style="background:transparent; border: 2px solid #1a1a1a; color: #1a1a1a;">Let's Connect</a>
+            </div>
+        </div>
+    </section>
 
     <footer>&copy; 2025 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
 
     <a href="https://wa.me/254793378439" class="whatsapp-float" target="_blank">
-       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+       <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
           <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.06 3.973L0 16l4.204-1.102a7.934 7.934 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
        </svg>
     </a>
 
     <script>
-        function updateDashboard() {
+        function updateClock() {
             const now = new Date();
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            const s = String(now.getSeconds()).padStart(2, '0');
-            const day = now.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
-            
-            document.getElementById('live-time').innerText = `${day} | ${h}:${m}:${s}`;
+            // Clock for Nav
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            document.getElementById('nav-clock').innerText = timeStr;
 
+            // Greeting Logic
             const hour = now.getHours();
-            let greeting = "Good Evening";
-            if (hour < 12) greeting = "Good Morning";
-            else if (hour < 18) greeting = "Good Afternoon";
-            document.getElementById('greeting').innerText = `${greeting}, Austine. Ready for success?`;
+            let greeting = "GOOD EVENING";
+            if (hour < 12) greeting = "GOOD MORNING";
+            else if (hour < 18) greeting = "GOOD AFTERNOON";
+            document.getElementById('greeting').innerText = greeting;
         }
-        setInterval(updateDashboard, 1000);
-        updateDashboard();
-
-        if ('getBattery' in navigator) {
-            navigator.getBattery().then(function(battery) {
-                function updateBattery() {
-                    const level = Math.round(battery.level * 100);
-                    const charging = battery.charging ? "⚡" : "";
-                    document.getElementById('battery-info').innerHTML = `BATTERY: ${level}% ${charging}`;
-                }
-                updateBattery();
-                battery.onlevelchange = updateBattery;
-                battery.onchargingchange = updateBattery;
-            });
-        }
-
-        const quotes = [
-            { text: "Take massive, determined action. Focus on starting.", author: "Austine" },
-            { text: "The bridge to success is built with daily habits.", author: "Resilience" },
-            { text: "Don't give up. Your breakthrough is closer than you think.", author: "Success" }
-        ];
-
-        function newQuote() {
-            const q = document.getElementById('quote');
-            q.style.opacity = 0;
-            setTimeout(() => {
-                const idx = Math.floor(Math.random() * quotes.length);
-                q.innerText = `"${quotes[idx].text}"`;
-                q.style.opacity = 1;
-            }, 400);
-        }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>
 
-    
+                    
