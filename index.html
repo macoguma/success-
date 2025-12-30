@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +23,7 @@
         }
         .logo { font-weight: 700; letter-spacing: 2px; color: var(--text); text-decoration: none; }
         
-        /* Neon Time & Date Style */
+        /* Neon Dashboard */
         .neon-dashboard { 
             font-family: 'JetBrains Mono', monospace; 
             font-size: 0.8rem; 
@@ -32,8 +32,6 @@
             border-radius: 5px;
             color: var(--neon);
             text-shadow: 0 0 5px var(--neon), 0 0 10px rgba(0, 243, 255, 0.5);
-            display: flex;
-            gap: 10px;
         }
 
         /* Hero Section */
@@ -72,13 +70,21 @@
         }
         .btn:hover { background: var(--accent); transform: translateY(-2px); }
 
-        footer { padding: 4rem; text-align: center; color: #999; font-size: 0.9rem; background: #fafafa; }
+        /* WhatsApp Pulse Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; 
             background-color: #25d366; color: #FFF; border-radius: 50px; 
-            display: flex; align-items: center; justify-content: center; z-index: 1000;
+            display: flex; align-items: center; justify-content: center; 
+            z-index: 1000; animation: pulse 2s infinite; text-decoration: none;
         }
+
+        footer { padding: 4rem; text-align: center; color: #999; font-size: 0.9rem; background: #fafafa; }
 
         @media (min-width: 900px) { .profile-card { grid-template-columns: 1fr 1.2fr; } .hero h1 { font-size: 4rem; } }
     </style>
@@ -127,8 +133,6 @@
             const now = new Date();
             const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
             const dateStr = now.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
-            
-            // Displays date and time on one line in the neon box
             document.getElementById('live-dashboard').innerText = `${dateStr} | ${timeStr}`;
 
             const hour = now.getHours();
@@ -145,7 +149,7 @@
             "Your breakthrough is often just one more attempt away.",
             "The bridge to success is built with the bricks of daily habits.",
             "Don't give up. The hardest part of the journey is usually near the end.",
-            "Small progress is still progress. Keep moving forward."
+            "Resilience is not what happens to you, it's how you react to it."
         ];
 
         function newQuote() {
@@ -160,4 +164,4 @@
     </script>
 </body>
 </html>
-             
+     
