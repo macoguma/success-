@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oguma Austine | Resilience & Success</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --white: #ffffff; }
+        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --white: #ffffff; --neon: #00f3ff; }
         body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
         
         /* Navigation */
@@ -23,28 +23,43 @@
         }
         .logo { font-weight: 700; letter-spacing: 2px; color: var(--text); text-decoration: none; }
         
-        /* Subtle Clock in Nav */
-        #nav-clock { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #888; }
+        /* Neon Time & Date Style */
+        .neon-dashboard { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.8rem; 
+            background: #000; 
+            padding: 5px 15px; 
+            border-radius: 5px;
+            color: var(--neon);
+            text-shadow: 0 0 5px var(--neon), 0 0 10px rgba(0, 243, 255, 0.5);
+            display: flex;
+            gap: 10px;
+        }
 
         /* Hero Section */
         .hero { padding: 12% 10%; text-align: center; background: linear-gradient(to bottom, #fff, var(--muted)); }
+        .greeting-msg { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1.5rem; color: #000; }
         .hero p { font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto 2rem auto; }
-        .greeting-msg { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
 
-        /* Quote of the Day Card */
+        /* Quote Card */
         .quote-card { 
             background: var(--white); 
-            padding: 3rem 2rem; 
+            padding: 3.5rem 2rem; 
             margin: -50px 10% 50px 10%; 
             border-radius: 12px; 
             box-shadow: 0 20px 40px rgba(0,0,0,0.05); 
             text-align: center;
             border-top: 4px solid var(--accent);
-            position: relative;
         }
-        .quote-text { font-size: 1.4rem; font-style: italic; color: #333; margin-bottom: 1rem; }
-        .quote-author { font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem; }
+        .quote-text { font-size: 1.4rem; font-style: italic; color: #333; margin-bottom: 1rem; transition: opacity 0.4s; min-height: 50px; }
+        .quote-author { font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1.5rem; }
+        
+        .refresh-btn { 
+            background: none; border: 1px solid #ddd; color: #888; padding: 8px 20px; 
+            border-radius: 25px; cursor: pointer; font-size: 0.7rem; font-weight: 600; transition: 0.3s; 
+        }
+        .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
 
         /* About Section */
         .content { padding: 5% 10%; }
@@ -52,53 +67,40 @@
         .profile-img { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         
         .btn { 
-            display: inline-block; 
-            padding: 1rem 2rem; 
-            background: var(--text); 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            font-weight: 600; 
-            transition: 0.3s;
-            margin-top: 1.5rem;
+            display: inline-block; padding: 1rem 2rem; background: var(--text); 
+            color: white; text-decoration: none; border-radius: 5px; font-weight: 600; transition: 0.3s; margin-top: 1.5rem;
         }
         .btn:hover { background: var(--accent); transform: translateY(-2px); }
 
         footer { padding: 4rem; text-align: center; color: #999; font-size: 0.9rem; background: #fafafa; }
 
-        /* WhatsApp Floating Button */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; 
             background-color: #25d366; color: #FFF; border-radius: 50px; 
-            text-align: center; font-size: 30px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); 
-            z-index: 1000; display: flex; align-items: center; justify-content: center; 
-            text-decoration: none;
+            display: flex; align-items: center; justify-content: center; z-index: 1000;
         }
 
-        /* Responsive */
-        @media (min-width: 900px) { 
-            .profile-card { grid-template-columns: 1fr 1.2fr; } 
-            .hero h1 { font-size: 4rem; }
-        }
+        @media (min-width: 900px) { .profile-card { grid-template-columns: 1fr 1.2fr; } .hero h1 { font-size: 4rem; } }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="#" class="logo">OGUMA AUSTINE</a>
-        <div id="nav-clock">00:00:00</div>
+        <div class="neon-dashboard" id="live-dashboard">Loading...</div>
     </nav>
 
     <header class="hero">
         <span class="greeting-msg" id="greeting">WELCOME</span>
         <h1>Resilience is the <br>Bridge to Success.</h1>
-        <p>Providing the encouragement and mindset shifts you need to cross the finish line, no matter the obstacles.</p>
-        <a href="https://wa.me/254793378439?text=Hi%20Austine,%20I'm%20ready%20to%20start%20my%20success%20journey!" class="btn">Get Started Now</a>
+        <p>Providing the encouragement and mindset shifts you need to cross the finish line.</p>
+        <a href="https://wa.me/254793378439" class="btn">Get Started Now</a>
     </header>
 
     <div class="quote-card">
-        <div class="quote-text">"The path to success is to take massive, determined action. Focus on starting."</div>
-        <div class="quote-author">— Daily Insight by Austine</div>
+        <div class="quote-text" id="quote">"The path to success is to take massive, determined action. Focus on starting."</div>
+        <div class="quote-author" id="author">— Daily Insight by Austine</div>
+        <button class="refresh-btn" onclick="newQuote()">GENERATE MOTIVATION</button>
     </div>
 
     <section class="content">
@@ -107,7 +109,6 @@
             <div>
                 <h2 style="font-family:'Playfair Display'; font-size: 2.5rem;">My Mission</h2>
                 <p>I believe that every setback is a setup for a comeback. My platform is dedicated to helping individuals like you develop the mental toughness required to achieve your dreams.</p>
-                <p>Whether you are a student, an entrepreneur, or someone facing a personal challenge, remember: <strong>Don't give up. Your breakthrough is closer than you think.</strong></p>
                 <a href="https://wa.me/254793378439" class="btn" style="background:transparent; border: 2px solid #1a1a1a; color: #1a1a1a;">Let's Connect</a>
             </div>
         </div>
@@ -122,23 +123,41 @@
     </a>
 
     <script>
-        function updateClock() {
+        function updateDashboard() {
             const now = new Date();
-            // Clock for Nav
             const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-            document.getElementById('nav-clock').innerText = timeStr;
+            const dateStr = now.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+            
+            // Displays date and time on one line in the neon box
+            document.getElementById('live-dashboard').innerText = `${dateStr} | ${timeStr}`;
 
-            // Greeting Logic
             const hour = now.getHours();
             let greeting = "GOOD EVENING";
             if (hour < 12) greeting = "GOOD MORNING";
             else if (hour < 18) greeting = "GOOD AFTERNOON";
             document.getElementById('greeting').innerText = greeting;
         }
-        setInterval(updateClock, 1000);
-        updateClock();
+        setInterval(updateDashboard, 1000);
+        updateDashboard();
+
+        const insights = [
+            "Success is the sum of small efforts repeated day in and day out.",
+            "Your breakthrough is often just one more attempt away.",
+            "The bridge to success is built with the bricks of daily habits.",
+            "Don't give up. The hardest part of the journey is usually near the end.",
+            "Small progress is still progress. Keep moving forward."
+        ];
+
+        function newQuote() {
+            const q = document.getElementById('quote');
+            q.style.opacity = 0;
+            setTimeout(() => {
+                const randomIdx = Math.floor(Math.random() * insights.length);
+                q.innerText = `"${insights[randomIdx]}"`;
+                q.style.opacity = 1;
+            }, 400);
+        }
     </script>
 </body>
 </html>
-
-                    
+             
