@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,18 +9,18 @@
         :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --white: #ffffff; --neon: #00f3ff; }
         body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
         
-        /* Watermark Styles */
+        /* Watermark Styles - UPDATED */
         .watermark {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%; /* Adjust size as needed */
-            max-width: 600px;
-            opacity: 0.05; /* Keeps it subtle */
-            z-index: -1; /* Places it behind all text */
+            width: 90%; /* Increased size */
+            max-width: 800px; /* Increased max size */
+            opacity: 0.2; /* Significantly increased opacity for visibility */
+            z-index: -1; /* Stays behind all text */
             pointer-events: none; /* Allows you to click through it */
-            filter: grayscale(100%); /* Makes it look more like a watermark */
+            /* filter: grayscale(100%); -- REMOVED to show original colors */
         }
 
         /* Navigation */
@@ -175,5 +175,4 @@
     </script>
 </body>
 </html>
-  
-    
+       
