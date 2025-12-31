@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oguma Austine | Resilience & Success</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <title>OGUMA AUSTINE | Resilience & Success</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --white: #ffffff; --neon: #00f3ff; }
         body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; overflow-x: hidden; }
@@ -22,7 +22,7 @@
             pointer-events: none;
         }
 
-        /* Navigation with Glowing Fancy Logo */
+        /* Navigation */
         nav { 
             padding: 1rem 10%; 
             display: flex; 
@@ -36,18 +36,18 @@
             z-index: 1000;
         }
         
-        /* Fancy Glowing Name */
+        /* Allegro Style Fancy Logo */
         .logo { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 2rem;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.8rem;
             color: #000;
             text-decoration: none;
-            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-style: italic;
             text-shadow: 
                 0 0 5px #fff,
-                0 0 10px #fff,
-                0 0 20px var(--accent),
-                0 0 30px var(--accent);
+                0 0 15px var(--accent);
             animation: text-glow 2s ease-in-out infinite alternate;
         }
 
@@ -64,14 +64,15 @@
             border-radius: 5px;
             color: var(--neon);
             text-shadow: 0 0 5px var(--neon);
+            min-width: 150px;
+            text-align: center;
         }
 
-        /* Hero & Content */
-        .hero { padding: 12% 10%; text-align: center; background: transparent; }
+        /* Hero */
+        .hero { padding: 12% 10%; text-align: center; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1.5rem; color: #000; }
-        .content { padding: 5% 10%; text-align: center; }
 
-        /* Neon Scrolling Advert */
+        /* Marquee Advert */
         .marquee-container {
             width: 100%;
             overflow: hidden;
@@ -85,7 +86,7 @@
         .marquee-text {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee 15s linear infinite;
+            animation: marquee 20s linear infinite;
         }
 
         .marquee-text a {
@@ -94,76 +95,72 @@
             font-weight: 800;
             color: var(--accent);
             text-decoration: none;
-            text-transform: uppercase;
             padding-right: 50px;
-            text-shadow: 0 0 10px rgba(184, 134, 11, 0.5);
         }
 
         @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* Pulsing WhatsApp */
+        /* Official WhatsApp Pulse */
         .whatsapp-float {
             position: fixed;
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             bottom: 40px;
             right: 40px;
             background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            text-decoration: none;
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
             animation: whatsapp-grow 2s infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         @keyframes whatsapp-grow {
             0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 25px rgba(37, 211, 102, 0); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
             100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        .quote-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); padding: 3.5rem 2rem; margin: -50px 10% 50px 10%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--accent); }
-        .quote-text { font-size: 1.3rem; font-style: italic; color: #333; margin-bottom: 1rem; min-height: 80px; display: flex; align-items: center; justify-content: center; transition: 0.4s; }
-        .btn { display: inline-block; padding: 1rem 2rem; background: var(--text); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; transition: 0.3s; margin-top: 1.5rem; }
+        .quote-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); padding: 3rem 2rem; margin: -50px 10% 50px 10%; border-radius: 12px; border-top: 4px solid var(--accent); text-align: center; }
+        .btn { display: inline-block; padding: 1rem 2rem; background: var(--text); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; margin-top: 1.5rem; cursor: pointer; border: none; }
         footer { padding: 4rem; text-align: center; color: #999; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <img src="austine.jpg" alt="Austine Watermark" class="watermark">
+    <img src="austine.jpg" alt="Watermark" class="watermark">
 
     <nav>
-        <a href="#" class="logo">Oguma Austine</a>
-        <div class="neon-dashboard" id="live-dashboard">Loading...</div>
+        <a href="#" class="logo">OGUMA AUSTINE</a>
+        <div class="neon-dashboard" id="live-dashboard">SYSTEM INITIALIZING...</div>
     </nav>
 
     <header class="hero">
-        <span id="greeting" style="color:var(--accent); letter-spacing: 2px; font-weight:600;">WELCOME</span>
+        <span id="greeting" style="color:var(--accent); letter-spacing: 2px; font-weight:700; text-transform: uppercase;">WELCOME</span>
         <h1>Resilience is the <br>Bridge to Success.</h1>
-        <p>Providing the encouragement and mindset shifts you need to cross the finish line.</p>
-        <a href="https://wa.me/254793378439" class="btn">Get Started Now</a>
+        <p>Providing the mindset shifts you need to cross the finish line.</p>
+        <button onclick="window.location.href='https://wa.me/254793378439'" class="btn">Get Started Now</button>
     </header>
 
     <div class="quote-card">
-        <div class="quote-text" id="quote">"The path to success is to take massive, determined action. Focus on starting."</div>
-        <div style="font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1.5rem;">— Daily Insight by Austine</div>
-        <button class="btn" style="background:none; border:1px solid #ddd; color:#888; font-size:0.7rem; border-radius:25px;" onclick="newQuote()">GENERATE MOTIVATION</button>
+        <div id="quote" style="font-size: 1.3rem; font-style: italic; min-height: 60px;">"The path to success is to take massive, determined action."</div>
+        <p style="color:var(--accent); font-weight:600; font-size:0.8rem; margin-top:1rem;">— DAILY INSIGHT BY AUSTINE</p>
+        <button class="btn" style="background:none; border:1px solid #ddd; color:#888; font-size:0.7rem; border-radius:20px;" onclick="newQuote()">GENERATE MOTIVATION</button>
     </div>
 
-    <section class="content">
+    <section class="content" style="text-align: center; padding: 5% 10%;">
         <h2 style="font-family:'Playfair Display'; font-size: 2.5rem;">My Mission</h2>
-        <p style="max-width: 800px; margin: 0 auto;">I believe that every setback is a setup for a comeback. My platform is dedicated to helping individuals like you develop the mental toughness required to achieve your dreams.</p>
+        <p style="max-width: 700px; margin: 0 auto;">I believe that every setback is a setup for a comeback. My platform is dedicated to helping you develop mental toughness.</p>
         
         <div class="marquee-container">
             <div class="marquee-text">
-                <a href="https://wa.me/254793378439">LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • </a>
+                <a href="https://wa.me/254793378439">LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • </a>
+                <a href="https://wa.me/254793378439">LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • </a>
             </div>
         </div>
     </section>
@@ -171,5 +168,61 @@
     <footer>&copy; 2025 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
 
     <a href="https://wa.me/254793378439" class="whatsapp-float" target="_blank">
-       <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.06 3.973L0 16l4.204-1.102a7.934 7.934 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.004 2C6.48 2 2.004 6.477 2.004 12C2.004 13.825 2.493 15.534 3.344 17.005L2 22L7.149 20.648C8.571 21.516 10.231 22.004 12.004 22.004C17.528 22.004 22.004 17.527 22.004 12C22.004 6.477 17.528 2 12.004 2ZM17.65 16.435C17.412 17.108 16.324 17.663 15.631 17.788C15.158 17.873 14.536 17.936 12.457 17.073C9.799 15.97 8.08 13.268 7.947 13.092C7.814 12.915 6.857 11.644 6.857 10.33C6.857 9.016 7.52 8.378 7.787 8.103C8.001 7.883 8.356 7.771 8.691 7.771C8.8 7.771 9.001 7.775 9.173 7.783C9.431 7.794 9.561 7.809 9.734 8.225C9.948 8.742 10.471 10.021 10.535 10.154C10.6 10.287 10.665 10.465 10.575 10.643C10.485 10.82 10.412 10.902 10.279 11.056C10.146 11.21 10.016 11.336 9.878 11.496C9.75 11.64 9.605 11.794 9.761 12.062C9.916 12.33 10.453 13.205 11.246 13.911C12.269 14.823 13.1 15.115 13.388 15.234C13.676 15.354 13.847 15.328 14.014 15.138C14.18 14.948 14.734 14.298 14.933 14.012C15.133 13.727 15.333 13.772 15.6 13.872C15.867 13.972 17.284 14.673 17.572 14.817C17.861 14.962 18.053 15.054 18.125 15.178C18.197 15.303 18.197 15.894 17.959 16.567L17.65 16.435Z" fill="white"/>
+        </svg>
+    </a>
+
+    <script>
+        function updateDashboard() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            const dateOptions = { weekday: 'short', day: 'numeric', month: 'short' };
+            const dateStr = now.toLocaleDateString(undefined, dateOptions);
+            
+            // Fix for the "Stuck Loading"
+            const dashboard = document.getElementById('live-dashboard');
+            if(dashboard) dashboard.innerText = `${dateStr.toUpperCase()} | ${timeStr}`;
+
+            // Greeting Logic
+            const hour = now.getHours();
+            let timeGreeting = "GOOD EVENING";
+            if (hour < 12) timeGreeting = "GOOD MORNING";
+            else if (hour < 18) timeGreeting = "GOOD AFTERNOON";
+
+            // Attempt to get name from Chrome Profile (if available)
+            let userName = "CHAMPION";
+            try {
+                // Browsers usually don't expose the email name directly for privacy
+                // but we can try to find a stored name or default to a strong title
+                const name = "GUEST"; 
+                document.getElementById('greeting').innerText = `${timeGreeting}, ${name}`;
+            } catch(e) {
+                document.getElementById('greeting').innerText = timeGreeting;
+            }
+        }
+
+        // Initialize immediately
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDashboard();
+            setInterval(updateDashboard, 1000);
+        });
+
+        const insights = ["Success is the sum of small efforts repeated day in and day out.", "Your breakthrough is often just one more attempt away.", "The bridge to success is built with the bricks of daily habits.", "Don't give up. The hardest part of the journey is usually near the end.", "Resilience is not what happens to you, it's how you react to it.", "The only way to do great work is to love what you do.", "Believe you can and you're halfway there.", "Action is the foundational key to all success.", "It does not matter how slowly you go as long as you do not stop.", "Everything you’ve ever wanted is on the other side of fear.", "Hardships often prepare ordinary people for an extraordinary destiny.", "Dream big and dare to fail.", "What you do today can improve all your tomorrows.", "The secret of getting ahead is getting started.", "Don’t watch the clock; do what it does. Keep going.", "Opportunities don't happen. You create them.", "The road to success and the road to failure are almost exactly the same.", "I find that the harder I work, the more luck I seem to have.", "Success is walking from failure to failure with no loss of enthusiasm.", "Stop chasing the money and start chasing the passion.", "The only limit to our realization of tomorrow will be our doubts of today.", "You don't have to be great to start, but you have to start to be great.", "Keep your face always toward the sunshine—and shadows will fall behind you.", "The power of imagination makes us infinite.", "Persistence guarantees that results are inevitable.", "If you are going through hell, keep going.", "Failure is the condiment that gives success its flavor.", "Quality is not an act, it is a habit.", "Don't let yesterday take up too much of today.", "You learn more from failure than from success. Don’t let it stop you.", "If you’re working on something that you really care about, you don’t have to be pushed.", "Vision pulls you.", "To see what is right and not do it is a lack of courage.", "Focus on being productive instead of busy.", "Your time is limited, so don't waste it living someone else's life.", "The best way to predict the future is to create it.", "Do what you can, with what you have, where you are.", "Be so good they can’t ignore you.", "Doubt kills more dreams than failure ever will.", "A person who never made a mistake never tried anything new.", "Great things are not done by impulse, but by a series of small things brought together.", "The future belongs to those who believe in the beauty of their dreams.", "It always seems impossible until it’s done.", "Setting goals is the first step in turning the invisible into the visible.", "Motivation is what gets you started. Habit is what keeps you going.", "The difference between a stumbling block and a stepping stone is how you use them.", "You are never too old to set another goal or to dream a new dream.", "Strength does not come from winning. Your struggles develop your strengths.", "Either you run the day or the day runs you.", "If you want to fly, give up everything that weighs you down.", "The only person you should try to be better than is the person you were yesterday.", "Work hard in silence, let your success be your noise.", "Don't quit. Suffer now and live the rest of your life as a champion.", "A year from now you may wish you had started today.", "The man who moves a mountain begins by carrying away small stones.", "The best revenge is massive success.", "I never dreamed about success. I worked for it.", "Small progress is still progress.", "Hustle until your idols become your rivals.", "Consistency is more important than perfection.", "Do it with passion or not at all.", "Great things never come from comfort zones.", "Success is not final, failure is not fatal: it is the courage to continue that counts.", "Character is the result of two things: mental attitude and the way we spend our time.", "Energy and persistence conquer all things.", "Start where you are. Use what you have. Do what you can.", "Build your own dreams, or someone else will hire you to build theirs.", "Challenges are what make life interesting and overcoming them is what makes life meaningful.", "I can't change the direction of the wind, but I can adjust my sails to always reach my destination.", "When you feel like quitting, think about why you started.", "Success is not just about what you accomplish in your life; it’s about what you inspire others to do.", "The goal is not to be rich. The goal is to be free.", "Be a voice, not an echo.", "Your only limit is your mind.", "Push yourself, because no one else is going to do it for you.", "Sometimes later becomes never. Do it now.", "Great things never come from comfort zones.", "Success doesn’t just find you. You have to go out and get it.", "The harder you work for something, the greater you’ll feel when you achieve it.", "Dream it. Wish it. Do it.", "Success is liking yourself, liking what you do, and liking how you do it.", "Don't stop when you're tired. Stop when you're done.", "Wake up with determination. Go to bed with satisfaction.", "Do something today that your future self will thank you for.", "Little things make big days.", "It’s going to be hard, but hard does not mean impossible.", "Don’t wait for opportunity. Create it.", "Sometimes we’re tested not to show our weaknesses, but to discover our strengths.", "Key to success is to focus on goals, not obstacles.", "Dream it. Believe it. Build it.", "Discipline is doing what needs to be done, even if you don't want to do it.", "The wound is the place where the Light enters you.", "What defines us is how well we rise after falling.", "The master has failed more times than the beginner has even tried.", "If you want to achieve greatness stop asking for permission.", "Things work out best for those who make the best of how things work out.", "To live a creative life, we must lose our fear of being wrong.", "If you are not willing to risk the usual you will have to settle for the ordinary.", "Trust because you are willing to accept the risk, not because it's safe or certain.", "Take up one idea. Make that one idea your life.", "All our dreams can come true if we have the courage to pursue them.", "Good things come to people who wait, but better things come to those who go out and get them.", "Success is the sum of small efforts, repeated day-in and day-out.", "The number one reason people fail in life is because they listen to their friends, family, and neighbors."];
+
+        let lastIdx = -1;
+        function newQuote() {
+            const q = document.getElementById('quote');
+            q.style.opacity = 0;
+            setTimeout(() => {
+                let randomIdx;
+                do { randomIdx = Math.floor(Math.random() * insights.length); } while (randomIdx === lastIdx);
+                lastIdx = randomIdx;
+                q.innerText = `"${insights[randomIdx]}"`;
+                q.style.opacity = 1;
+            }, 400);
+        }
+    </script>
+</body>
+</html>
+            
