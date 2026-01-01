@@ -2,150 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>OGUMA AUSTINE</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGUMA AUSTINE | Resilience & Success</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; }
-        * { box-sizing: border-box; }
-        body, html { 
-            margin: 0; padding: 0; height: 100vh; width: 100vw;
-            overflow: hidden; font-family: 'Inter', sans-serif; background: var(--bg); 
+        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+
+        /* Floating Header */
+        header nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* Floating Nav */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 10px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 2000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px);
-        }
-        .logo { font-family: 'Bodoni Moda', serif; font-size: 0.9rem; font-weight: 900; font-style: italic; text-transform: uppercase; text-decoration: none; color: #000; }
-        .date-dash { font-family: 'JetBrains Mono', monospace; background: #000; color: #00f3ff; padding: 3px 8px; border-radius: 4px; font-size: 0.55rem; }
+        .logo { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: #000; text-decoration: none; }
+        .date-dash { font-family: 'JetBrains Mono', monospace; background: #000; color: #00f3ff; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; }
 
-        /* Full Screen Background Wrapper */
-        .wrapper {
-            height: 100vh; width: 100%; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            background: url('austine.jpg') no-repeat center center; background-size: cover;
-            position: relative; padding: 0 10%;
-        }
-        .wrapper::before { content: ''; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.9); z-index: 1; }
-
-        /* Center Content Container */
-        .main-content { position: relative; z-index: 2; width: 100%; max-width: 400px; margin-top: -20px; }
-        
-        .greeting { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 5px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 1.7rem; margin: 0 0 15px 0; line-height: 1.2; }
-
-        /* Motivation Card */
-        .quote-card { 
-            background: #fff; padding: 25px 20px; border-radius: 12px; 
-            position: relative; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border: 1px solid #eee; margin-bottom: 15px;
-        }
-        .save-btn { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 1.1rem; cursor: pointer; color: #bbb; }
-        
-        blockquote { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-style: italic; margin: 0; color: #333; line-height: 1.4; }
-        .author-tag { display: block; margin-top: 10px; font-family: 'JetBrains Mono'; color: var(--accent); font-size: 0.6rem; text-transform: uppercase; }
-
-        /* Buttons Group */
-        .btn-group { display: flex; gap: 10px; justify-content: center; width: 100%; }
-        .btn { 
-            padding: 12px 0; border-radius: 5px; font-size: 0.75rem; font-weight: 600; 
-            cursor: pointer; text-decoration: none; border: none; flex: 1; transition: 0.3s;
-        }
-        .btn-black { background: #1a1a1a; color: #fff; }
-        .btn-outline { background: #fff; color: #000; border: 1px solid #ddd; }
-
-        /* FOOTER - Pinned to the very bottom */
-        footer { 
-            position: absolute; bottom: 15px; left: 0; width: 100%;
-            z-index: 10; font-size: 0.55rem; color: #888; 
-            text-align: center; letter-spacing: 1px;
-            font-family: 'Inter', sans-serif;
+        /* Compact Hero */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('austine.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 0 5%;
         }
 
-        /* WhatsApp DM Icon */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.88);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; width: 100%; max-width: 600px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 9vw, 3.8rem); margin: 15px 0; line-height: 1.1; }
+        .subtitle { font-family: 'JetBrains Mono', monospace; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 5px; }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 40px;
+            background: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp Beeping DM Icon */
         .whatsapp-float {
-            position: fixed; width: 48px; height: 48px; bottom: 40px; right: 15px;
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 20px;
             background-color: #25d366; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; z-index: 3000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            align-items: center; justify-content: center; z-index: 2000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: whatsapp-beep 2s infinite;
         }
 
-        @media (max-height: 600px) {
-            h1 { font-size: 1.4rem; }
-            .quote-card { padding: 15px; }
-            blockquote { font-size: 1rem; }
+        @keyframes whatsapp-beep {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
+
+        /* Quote Section */
+        .quote-section { padding: 80px 10%; background: var(--muted); text-align: center; min-height: 300px; }
+        .quote-card { background: #fff; padding: 40px 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; }
+        blockquote { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; margin: 0; line-height: 1.4; transition: opacity 0.3s; }
+        
+        .refresh-btn {
+            background: #000; color: #fff; border: none;
+            padding: 12px 30px; margin-top: 25px; border-radius: 4px;
+            font-family: 'Inter'; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+        }
+
+        footer { padding: 40px; text-align: center; font-size: 0.7rem; color: #bbb; letter-spacing: 2px; }
+
+        @media (max-width: 768px) { h1 { font-size: 2.6rem; } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">OGUMA AUSTINE</a>
-        <div class="date-dash" id="live-clock">...</div>
-    </nav>
+    <header>
+        <nav>
+            <a href="#" class="logo">OGUMA AUSTINE</a>
+            <div class="date-dash" id="live-clock">...</div>
+        </nav>
+    </header>
 
-    <div class="wrapper">
-        <div class="main-content">
-            <div class="greeting" id="time-greeting">GOOD MORNING</div>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="subtitle" id="time-greeting">GOOD MORNING</div>
             <h1>Resilience is the <br>Bridge to Success.</h1>
-            
-            <div class="quote-card" id="capture">
-                <button class="save-btn" onclick="saveAsImage()">⬇️</button>
-                <blockquote id="quote-text">"Hardships prepare ordinary people for extraordinary destinies."</blockquote>
-                <span class="author-tag">OGUMA AUSTINE | INSIGHTS</span>
-            </div>
-
-            <div class="btn-group">
-                <button class="btn btn-black" onclick="generateInsight()">NEW INSIGHT</button>
-                <a href="https://wa.me/254793378439" class="btn btn-outline">LET'S CHAT</a>
-            </div>
+            <p style="color: #666;">Mindset shifts to help you cross the finish line.</p>
+            <a href="https://wa.me/254793378439" class="cta-button">Get Started Now</a>
         </div>
-
-        <footer>&copy; 2026 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
     </div>
 
-    <a href="https://wa.me/254793378439" class="whatsapp-float">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.766-5.764-5.766zm3.392 8.221c-.142.399-.833.723-1.141.774-.287.047-.66.077-1.056-.049-.253-.081-.573-.191-.967-.361-1.681-.722-2.735-2.422-2.82-2.535-.085-.113-.69-.918-.69-1.751 0-.833.438-1.243.593-1.413.155-.17.34-.213.453-.213.113 0 .226.001.325.006.104.005.244-.039.382.296.142.346.481 1.173.523 1.258.043.085.07.184.014.297-.057.113-.085.184-.17.283-.085.099-.175.22-.253.297-.094.094-.193.196-.083.385.11.188.489.808 1.05 1.308.723.645 1.333.846 1.521.94.188.094.297.078.41-.05.113-.127.481-.565.608-.761.127-.196.254-.165.424-.101.17.064 1.073.506 1.258.599.184.094.307.141.352.219.045.078.045.452-.097.851z"/><path d="M12.004 2C6.48 2 2.004 6.477 2.004 12c0 1.907.533 3.687 1.458 5.2l-1.458 5.32 5.459-1.434c1.455.803 3.123 1.264 4.895 1.264 5.524 0 10-4.477 10-10S17.528 2 12.004 2zm0 17.5c-1.61 0-3.116-.431-4.412-1.184l-.317-.183-3.268.858.874-3.192-.201-.32c-.822-1.314-1.301-2.871-1.301-4.544 0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+    <section class="quote-section">
+        <div class="quote-card">
+            <blockquote id="quote-text">"Hardships prepare ordinary people for extraordinary destinies."</blockquote>
+            <cite style="display:block; margin-top:15px; font-family:'JetBrains Mono'; color:var(--accent); font-size:0.75rem; font-style: normal;">— DAILY INSIGHT BY AUSTINE</cite>
+            <button class="refresh-btn" onclick="generateInsight()">NEW INSIGHT</button>
+        </div>
+    </section>
+
+    <a href="https://wa.me/254793378439" class="whatsapp-float" target="_blank">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="white">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.766-5.764-5.766zm3.392 8.221c-.142.399-.833.723-1.141.774-.287.047-.66.077-1.056-.049-.253-.081-.573-.191-.967-.361-1.681-.722-2.735-2.422-2.82-2.535-.085-.113-.69-.918-.69-1.751 0-.833.438-1.243.593-1.413.155-.17.34-.213.453-.213.113 0 .226.001.325.006.104.005.244-.039.382.296.142.346.481 1.173.523 1.258.043.085.07.184.014.297-.057.113-.085.184-.17.283-.085.099-.175.22-.253.297-.094.094-.193.196-.083.385.11.188.489.808 1.05 1.308.723.645 1.333.846 1.521.94.188.094.297.078.41-.05.113-.127.481-.565.608-.761.127-.196.254-.165.424-.101.17.064 1.073.506 1.258.599.184.094.307.141.352.219.045.078.045.452-.097.851z"/>
+            <path d="M12.004 2C6.48 2 2.004 6.477 2.004 12c0 1.907.533 3.687 1.458 5.2l-1.458 5.32 5.459-1.434c1.455.803 3.123 1.264 4.895 1.264 5.524 0 10-4.477 10-10S17.528 2 12.004 2zm0 17.5c-1.61 0-3.116-.431-4.412-1.184l-.317-.183-3.268.858.874-3.192-.201-.32c-.822-1.314-1.301-2.871-1.301-4.544 0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+        </svg>
     </a>
 
+    <footer>&copy; 2026 OGUMA AUSTINE</footer>
+
     <script>
-        const s = ["Greatness", "Success", "Growth", "Strength", "Your vision"];
-        const a = ["comes to those who", "is built when", "requires that", "flourishes while", "is the result of"];
-        const e = ["persistence meets passion.", "you refuse to quit.", "discipline becomes habit.", "trusting the process.", "staying resilient."];
+        // High-Variety Quote Generator (Thousands of combinations)
+        const starters = ["Success", "Resilience", "Greatness", "Your journey", "The road to success", "True progress", "Strength"];
+        const actions = ["is not about never falling,", "is built when", "requires that", "emerges when", "is the result of", "flourishes only if"];
+        const ends = ["you pick yourself up every time.", "you choose to keep going in the dark.", "the will to win outweighs the fear of loss.", "persistence meets opportunity.", "discipline becomes a daily habit.", "you embrace the struggle as a teacher."];
 
         function generateInsight() {
             const text = document.getElementById('quote-text');
-            const q = `"${s[Math.floor(Math.random()*s.length)]} ${a[Math.floor(Math.random()*a.length)]} ${e[Math.floor(Math.random()*e.length)]}"`;
+            const s = starters[Math.floor(Math.random() * starters.length)];
+            const a = actions[Math.floor(Math.random() * actions.length)];
+            const e = ends[Math.floor(Math.random() * ends.length)];
+            
             text.style.opacity = 0;
-            setTimeout(() => { text.innerText = q; text.style.opacity = 1; }, 150);
-        }
-
-        function saveAsImage() {
-            const captureElement = document.getElementById('capture');
-            const saveBtn = captureElement.querySelector('.save-btn');
-            saveBtn.style.visibility = 'hidden';
-            html2canvas(captureElement).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'Austine-Insight.png';
-                link.href = canvas.toDataURL();
-                link.click();
-                saveBtn.style.visibility = 'visible';
-            });
+            setTimeout(() => {
+                text.innerText = `"${s} ${a} ${e}"`;
+                text.style.opacity = 1;
+            }, 250);
         }
 
         function updateClock() {
             const now = new Date();
-            document.getElementById('live-clock').innerText = now.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' }).toUpperCase() + ' | ' + now.toLocaleTimeString('en-GB', { hour12: false });
-            const h = now.getHours();
-            document.getElementById('time-greeting').innerText = h < 12 ? "GOOD MORNING" : h < 17 ? "GOOD AFTERNOON" : "GOOD EVENING";
+            const dateStr = now.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' }).toUpperCase();
+            const timePart = now.toLocaleTimeString('en-GB', { hour12: false });
+            document.getElementById('live-clock').innerText = `${datePart} | ${timePart}`;
+            const hour = now.getHours();
+            document.getElementById('time-greeting').innerText = hour < 12 ? "GOOD MORNING" : hour < 17 ? "GOOD AFTERNOON" : "GOOD EVENING";
         }
-        setInterval(updateClock, 1000); updateClock();
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>
-
             
