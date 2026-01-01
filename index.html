@@ -42,7 +42,6 @@
             font-size: 0.65rem;
             cursor: pointer;
             border: 1px solid var(--neon);
-            box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
         }
 
         .neon-dashboard { 
@@ -57,11 +56,11 @@
 
         .logo { font-family: 'Bodoni Moda', serif; font-size: 1.4rem; color: #000; text-decoration: none; text-transform: uppercase; font-style: italic; }
 
-        /* AI CHAT INTERFACE */
+        /* AI CHAT INTERFACE - BOTTOM LEFT */
         #ai-chat-container {
             position: fixed;
             bottom: 100px;
-            right: 20px;
+            left: 20px;
             width: 320px;
             background: #fff;
             border-radius: 12px;
@@ -89,7 +88,7 @@
         .ai-toggle {
             position: fixed;
             bottom: 30px;
-            right: 90px;
+            left: 20px; 
             background: #000;
             color: var(--neon);
             padding: 15px 20px;
@@ -101,16 +100,12 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 1px solid var(--neon);
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         /* Hero & Projects */
         .hero { padding: 12% 10% 8% 10%; text-align: center; }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 8%; background: var(--muted); }
         .project-card { background: white; padding: 30px; border-radius: 8px; border: 1px solid #eee; transition: 0.3s ease; text-align: left; }
-        .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 20px;
@@ -129,8 +124,8 @@
 </head>
 <body>
 
-    <audio id="bg-audio" loop>
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-river-water-flowing-loop-1196.mp3" type="audio/mpeg">
+    <audio id="bg-audio" loop preload="auto">
+        <source src="https://www.soundjay.com/nature/river-1.mp3" type="audio/mpeg">
     </audio>
 
     <img src="austine.jpg" alt="Oguma Austine" class="watermark">
@@ -146,8 +141,7 @@
     <header class="hero">
         <span id="greeting" style="color:var(--accent); font-weight:700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">WELCOME</span>
         <h1 style="font-family: 'Playfair Display'; font-size: 3rem; margin: 15px 0;">Resilience is the <br>Bridge to Success.</h1>
-        <p style="color: #666; max-width: 600px; margin: 0 auto 20px;">I am Austine. I build digital bridges and study the art of bouncing back. Ask my AI anything about my work or mindset.</p>
-        <button onclick="toggleChat()" style="display: inline-block; padding: 0.8rem 1.8rem; background: var(--text); color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer;">Start a Conversation</button>
+        <p style="color: #666; max-width: 600px; margin: 0 auto 20px;">Built for growth. Use the AI in the bottom left to record notes or discuss resilience.</p>
     </header>
 
     <section id="projects">
@@ -156,12 +150,12 @@
             <div class="project-card">
                 <span style="font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--accent); font-weight: bold;">PROJECT 01</span>
                 <h3>Digital Foundation</h3>
-                <p style="font-size: 0.85rem; color: #666;">Building core architecture for a resilient online presence.</p>
+                <p style="font-size: 0.85rem; color: #666;">Core architecture for long-term digital growth.</p>
             </div>
             <div class="project-card">
                 <span style="font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--accent); font-weight: bold;">PROJECT 02</span>
                 <h3>Interactive Growth</h3>
-                <p style="font-size: 0.85rem; color: #666;">Developing dynamic experiences to engage and inspire the modern user.</p>
+                <p style="font-size: 0.85rem; color: #666;">High-impact user experiences through modern design.</p>
             </div>
         </div>
     </section>
@@ -170,11 +164,11 @@
 
     <div id="ai-chat-container">
         <div class="chat-header">
-            <span>AUSTINE AI v2.0</span>
+            <span>AUSTINE'S AI</span>
             <span onclick="toggleChat()" style="cursor:pointer; font-size: 1.2rem;">&times;</span>
         </div>
         <div class="chat-body" id="chat-content">
-            <div class="msg ai">Hello Austine! I am your interactive partner. Ask me about your projects, success, or how I am doing!</div>
+            <div class="msg ai">Hi! I am Austine's AI. We can discuss anything 😉</div>
         </div>
         <div class="chat-input-area">
             <input type="text" id="user-input" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()">
@@ -182,14 +176,16 @@
         </div>
     </div>
 
-    <footer>&copy; 2026 OGUMA AUSTINE.</footer>
+    <footer>&copy; 2026 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
 
     <a href="https://wa.me/254793378439" class="whatsapp-float" target="_blank">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M12.004 2C6.48 2 2.004 6.477 2.004 12C2.004 13.825 2.493 15.534 3.344 17.005L2 22L7.149 20.648C8.571 21.516 10.231 22.004 12.004 22.004C17.528 22.004 22.004 17.527 22.004 12C22.004 6.477 17.528 2 12.004 2Z"/></svg>
     </a>
 
     <script>
-        // SMART AI LOGIC
+        // ENHANCED AI MEMORY SYSTEM
+        let userMemory = []; 
+
         function toggleChat() {
             const chat = document.getElementById('ai-chat-container');
             chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
@@ -201,41 +197,44 @@
             const userText = input.value.trim();
             if (userText === "") return;
 
-            // User Bubble
             content.innerHTML += `<div class="msg user">${userText}</div>`;
             input.value = "";
             content.scrollTop = content.scrollHeight;
 
-            // AI Logic Engine
             let response = "";
             const query = userText.toLowerCase();
 
-            if (query.includes("hi") || query.includes("hello")) {
-                response = "Hello Austine! It's great to see you active today. What's on your mind?";
-            } else if (query.includes("how are you")) {
-                response = "I'm functioning perfectly and feeling resilient! How are you handling your goals today?";
+            // Store in Memory Logic
+            if (query.includes("remember that") || query.includes("keep in mind")) {
+                const fact = userText.replace(/remember that|keep in mind/gi, "").trim();
+                userMemory.push(fact);
+                response = "I've locked that in my memory for you! I'll keep it safe.";
+            } 
+            // Recall Memory Logic
+            else if (query.includes("what do you remember") || query.includes("what did i tell you")) {
+                if (userMemory.length === 0) {
+                    response = "My memory is currently a blank slate. Tell me something you want me to keep!";
+                } else {
+                    response = "Here is what I'm keeping for you: <br>• " + userMemory.join("<br>• ");
+                }
+            }
+            // Standard Specific Responses
+            else if (query.includes("hi") || query.includes("hello")) {
+                response = "Hello! I'm here and ready to assist. What can we build today?";
             } else if (query.includes("success")) {
-                response = "Success isn't just a destination, Austine. It's the bridge you build every day through resilience.";
+                response = "Success is the byproduct of staying resilient when others quit.";
             } else if (query.includes("project")) {
-                response = "You have two main projects right now: your Digital Foundation and Interactive Growth. Both are looking sharp!";
-            } else if (query.includes("resilience")) {
-                response = "Resilience is your superpower. It's the ability to turn a 'no' into a 'not yet'.";
-            } else if (query.includes("who are you")) {
-                response = "I am the digital reflection of Austine's vision—designed to help users navigate this space.";
-            } else if (query.includes("nature") || query.includes("sound")) {
-                response = "The Zen Mode helps calm the mind. I hope the sound of the flowing river is helping you focus!";
+                response = "You're looking at Austine's Digital Foundation and Interactive Growth projects. Both are part of the 2026 roadmap.";
             } else {
-                response = "That's an interesting point, Austine. It sounds like you're thinking deeply about your journey. Tell me more about that.";
+                response = "I'm processing that. It's a great point for us to explore further.";
             }
 
-            // Simulate typing delay
             setTimeout(() => {
                 content.innerHTML += `<div class="msg ai">${response}</div>`;
                 content.scrollTop = content.scrollHeight;
             }, 800);
         }
 
-        // AUDIO & DASHBOARD
         const audio = document.getElementById('bg-audio');
         function toggleAudio() {
             if (audio.paused) { 
@@ -262,4 +261,5 @@
     </script>
 </body>
 </html>
-                    
+            
+    
