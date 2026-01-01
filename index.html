@@ -76,12 +76,12 @@
         .chat-body { height: 250px; padding: 15px; overflow-y: auto; font-size: 0.85rem; background: var(--muted); }
         .chat-input-area { display: flex; border-top: 1px solid #eee; }
         .chat-input-area input { flex: 1; border: none; padding: 12px; outline: none; font-size: 0.85rem; }
-        .chat-input-area button { background: #000; color: #fff; border: none; padding: 0 15px; cursor: pointer; }
+        .chat-input-area button { background: #000; color: #fff; border: none; padding: 0 15px; cursor: pointer; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
 
         .ai-toggle {
             position: fixed;
             bottom: 30px;
-            right: 90px; /* Positioned next to WhatsApp */
+            right: 90px;
             background: #000;
             color: var(--neon);
             padding: 15px 20px;
@@ -95,11 +95,11 @@
             font-weight: bold;
         }
 
-        /* Hero & Sections */
-        .hero { padding: 8% 10% 5% 10%; text-align: center; }
-        .bible-section { padding: 60px 8%; background: var(--muted); text-align: center; }
-        .bible-frame-container { width: 100%; max-width: 800px; margin: 20px auto; height: 500px; border-radius: 12px; overflow: hidden; border: 1px solid #ddd; background: white; }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* Hero & Projects */
+        .hero { padding: 12% 10% 8% 10%; text-align: center; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 8%; background: var(--muted); }
+        .project-card { background: white; padding: 30px; border-radius: 8px; border: 1px solid #eee; transition: 0.3s ease; text-align: left; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 20px;
@@ -133,15 +133,25 @@
     </nav>
 
     <header class="hero">
-        <span id="greeting" style="color:var(--accent); font-weight:700; text-transform: uppercase; font-size: 0.8rem;">WELCOME</span>
-        <h1 style="font-family: 'Playfair Display'; font-size: 2.8rem;">Resilience is the <br>Bridge to Success.</h1>
-        <p style="color: #666;">Ask our AI anything about resilience and spiritual growth.</p>
+        <span id="greeting" style="color:var(--accent); font-weight:700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">WELCOME</span>
+        <h1 style="font-family: 'Playfair Display'; font-size: 3rem; margin: 15px 0;">Resilience is the <br>Bridge to Success.</h1>
+        <p style="color: #666; max-width: 600px; margin: 0 auto 20px;">Turning setbacks into setups for a powerful 2026. Use the AI assistant below to explore your path to success.</p>
+        <button onclick="toggleChat()" style="display: inline-block; padding: 0.8rem 1.8rem; background: var(--text); color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer;">Start a Conversation</button>
     </header>
 
-    <section class="bible-section" id="bible">
-        <h2 style="font-family: 'Playfair Display'; font-size: 2rem;">The Daily Bread</h2>
-        <div class="bible-frame-container">
-            <iframe src="https://www.biblegateway.com/passage/?search=Matthew+5&version=KJV"></iframe>
+    <section id="projects">
+        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.2rem; margin-top: 50px;">Featured Work</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <span style="font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--accent); font-weight: bold;">PROJECT 01</span>
+                <h3>Digital Foundation</h3>
+                <p style="font-size: 0.85rem; color: #666;">Constructing core architecture for a resilient online presence.</p>
+            </div>
+            <div class="project-card">
+                <span style="font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--accent); font-weight: bold;">PROJECT 02</span>
+                <h3>Interactive Growth</h3>
+                <p style="font-size: 0.85rem; color: #666;">Developing dynamic experiences to engage and inspire the modern user.</p>
+            </div>
         </div>
     </section>
 
@@ -168,7 +178,6 @@
     </a>
 
     <script>
-        // AI Logic
         function toggleChat() {
             const chat = document.getElementById('ai-chat-container');
             chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
@@ -179,25 +188,20 @@
             const content = document.getElementById('chat-content');
             if (input.value.trim() === "") return;
 
-            // User Message
             content.innerHTML += `<p><b>You:</b> ${input.value}</p>`;
-            
-            // AI Response logic (Simple Simulated AI for resilience)
             const userText = input.value.toLowerCase();
-            let response = "That's a great question about resilience. Keep pushing forward!";
+            let response = "That's a powerful thought. Resilience is about bouncing back stronger.";
             
-            if (userText.includes("success")) response = "Success is built day by day through consistent habits.";
-            if (userText.includes("bible") || userText.includes("god")) response = "Faith provides the strongest foundation for resilience.";
+            if (userText.includes("success")) response = "Success isn't final; it's the courage to continue that counts.";
+            if (userText.includes("project")) response = "Your current projects are the building blocks of your 2026 legacy.";
 
             setTimeout(() => {
                 content.innerHTML += `<p style="color:var(--accent)"><b>AI:</b> ${response}</p>`;
                 content.scrollTop = content.scrollHeight;
             }, 600);
-
             input.value = "";
         }
 
-        // Dashboard & Audio
         const audio = document.getElementById('bg-audio');
         function toggleAudio() {
             if (audio.paused) { audio.play(); document.getElementById('audio-btn').innerText = '🔊 ZEN ON'; }
@@ -217,5 +221,4 @@
     </script>
 </body>
 </html>
-
-    
+                    
