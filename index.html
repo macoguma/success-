@@ -3,189 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OGUMA AUSTINE | Resilience & Success</title>
+    <title>OGUMA AUSTINE | Intelligence & Resilience</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --neon: #00f3ff; }
         body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
         
-        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 800px; opacity: 0.15; z-index: -1; pointer-events: none; }
+        /* Dashboard */
+        nav { padding: 1rem 5%; border-bottom: 1px solid #eee; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; }
+        .top-row { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .audio-ctrl { background: #000; color: var(--neon); padding: 5px 12px; border-radius: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; cursor: pointer; border: 1px solid var(--neon); }
+        .neon-dashboard { font-family: 'JetBrains Mono'; font-size: 0.75rem; background: #000; padding: 5px 12px; border-radius: 4px; color: var(--neon); }
 
-        /* Navigation */
-        nav { 
-            padding: 1rem 5%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start;
-            border-bottom: 1px solid #eee; 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px);
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
-        }
-
-        .top-row {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .audio-ctrl {
-            background: #000;
-            color: var(--neon);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            cursor: pointer;
-            border: 1px solid var(--neon);
-        }
-
-        .neon-dashboard { 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.75rem; 
-            background: #000; 
-            padding: 5px 12px; 
-            border-radius: 4px;
-            color: var(--neon);
-            text-shadow: 0 0 5px var(--neon);
-        }
-
-        .logo { font-family: 'Bodoni Moda', serif; font-size: 1.4rem; color: #000; text-decoration: none; text-transform: uppercase; font-style: italic; }
-
-        /* AI CHAT INTERFACE - POSITIONED BOTTOM LEFT */
+        /* THE AI INTERFACE - GPT STYLE */
         #ai-chat-container {
-            position: fixed;
-            bottom: 100px;
-            left: 20px;
-            width: 320px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-            display: none;
-            flex-direction: column;
-            z-index: 3000;
-            border: 1px solid #eee;
-            overflow: hidden;
-            animation: slideUp 0.3s ease;
+            position: fixed; bottom: 90px; left: 20px; width: 350px; 
+            background: #fff; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: none; flex-direction: column; z-index: 3000; border: 1px solid #ddd; overflow: hidden;
         }
+        .chat-header { background: #000; color: #fff; padding: 15px; font-family: 'JetBrains Mono'; font-size: 0.8rem; display: flex; justify-content: space-between; }
+        .chat-body { height: 380px; padding: 20px; overflow-y: auto; background: #fff; display: flex; flex-direction: column; gap: 15px; }
+        
+        .msg { padding: 12px 16px; border-radius: 14px; max-width: 85%; font-size: 0.92rem; line-height: 1.5; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .msg.user { background: #f0f0f0; color: #000; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .msg.ai { background: #000; color: #fff; align-self: flex-start; border-bottom-left-radius: 2px; border-left: 4px solid var(--neon); }
 
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        #typing-indicator { font-size: 0.75rem; color: #aaa; padding: 0 20px 10px; display: none; font-style: italic; }
 
-        .chat-header { background: #000; color: var(--neon); padding: 15px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; }
-        .chat-body { height: 300px; padding: 15px; overflow-y: auto; font-size: 0.85rem; background: var(--muted); display: flex; flex-direction: column; gap: 10px; }
-        .msg { padding: 8px 12px; border-radius: 8px; max-width: 85%; line-height: 1.4; }
-        .msg.user { background: #e0e0e0; align-self: flex-end; color: #000; }
-        .msg.ai { background: #000; color: var(--neon); align-self: flex-start; border: 1px solid var(--neon); }
-
-        .chat-input-area { display: flex; border-top: 1px solid #eee; background: white; }
-        .chat-input-area input { flex: 1; border: none; padding: 15px; outline: none; font-size: 0.85rem; }
-        .chat-input-area button { background: #000; color: var(--neon); border: none; padding: 0 20px; cursor: pointer; font-family: 'JetBrains Mono'; font-weight: bold; }
+        .chat-input-area { display: flex; padding: 12px; border-top: 1px solid #eee; }
+        .chat-input-area input { flex: 1; border: 1px solid #eee; padding: 10px 15px; border-radius: 25px; outline: none; font-size: 0.9rem; margin-right: 10px; }
+        .chat-input-area button { background: #000; color: var(--neon); border: none; padding: 0 18px; cursor: pointer; border-radius: 25px; font-weight: 600; font-size: 0.8rem; }
 
         .ai-toggle {
-            position: fixed;
-            bottom: 30px;
-            left: 20px; 
-            background: #000;
-            color: var(--neon);
-            padding: 12px 18px;
-            border-radius: 30px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            cursor: pointer;
-            z-index: 2000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid var(--neon);
-            font-weight: bold;
+            position: fixed; bottom: 30px; left: 20px; background: #000; color: var(--neon);
+            padding: 14px 22px; border-radius: 50px; font-family: 'JetBrains Mono'; font-size: 0.7rem;
+            cursor: pointer; z-index: 2000; border: 1px solid var(--neon); box-shadow: 0 10px 30px rgba(0,243,255,0.2);
+            transition: 0.3s;
         }
+        .ai-toggle:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,243,255,0.4); }
 
-        /* Hero & Projects */
-        .hero { padding: 12% 10% 8% 10%; text-align: center; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 8%; background: var(--muted); }
-        .project-card { background: white; padding: 30px; border-radius: 8px; border: 1px solid #eee; transition: 0.3s ease; text-align: left; }
-
-        .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 20px;
-            background-color: #25d366; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 2000; animation: whatsapp-beep 2s infinite;
-        }
-        @keyframes whatsapp-beep {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        footer { padding: 2rem; text-align: center; color: #999; font-size: 0.7rem; border-top: 1px solid #eee; background: white; position: relative; z-index: 10; }
+        footer { padding: 20px; text-align: center; color: #bbb; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
     <audio id="bg-audio" loop preload="auto">
-        <source src="https://www.soundjay.com/nature/forest-birds-1.mp3" type="audio/mpeg">
+        <source src="https://www.soundjay.com/nature/sounds/forest-birds-1.mp3" type="audio/mpeg">
     </audio>
-
-    <img src="austine.jpg" alt="Oguma Austine" class="watermark">
 
     <nav>
         <div class="top-row">
             <div class="audio-ctrl" onclick="toggleAudio()" id="audio-btn">🔇 ZEN OFF</div>
             <div class="neon-dashboard" id="live-dashboard">...</div>
         </div>
-        <a href="#" class="logo">OGUMA AUSTINE</a>
     </nav>
 
-    <header class="hero">
-        <span id="greeting" style="color:var(--accent); font-weight:700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">WELCOME</span>
-        <h1 style="font-family: 'Playfair Display'; font-size: 3rem; margin: 15px 0;">Resilience is the <br>Bridge to Success.</h1>
-        <p style="color: #666; max-width: 600px; margin: 0 auto 20px;">Built for the year 2026. Chat with the AI in the bottom left to explore your success roadmap.</p>
+    <header style="padding: 10% 10% 5%; text-align: center;">
+        <span id="greeting" style="color:var(--accent); font-weight:700; letter-spacing: 2px; font-size: 0.75rem;">...</span>
+        <h1 style="font-family: 'Playfair Display'; font-size: clamp(2rem, 8vw, 3.5rem); margin: 20px 0;">Resilience is the <br>Bridge to Success.</h1>
+        <p style="color: #888;">Chat with my digital consciousness in the bottom left.</p>
     </header>
 
-    <section id="projects">
-        <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.2rem; margin-top: 50px;">Featured Work</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <span style="font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--accent); font-weight: bold;">PROJECT 01</span>
-                <h3>Digital Foundation</h3>
-                <p style="font-size: 0.85rem; color: #666;">Modern architecture designed for resilience and growth.</p>
-            </div>
-            <div class="project-card">
-                <span style="font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--accent); font-weight: bold;">PROJECT 02</span>
-                <h3>Interactive Growth</h3>
-                <p style="font-size: 0.85rem; color: #666;">Engaging the user through advanced interaction design.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="ai-toggle" onclick="toggleChat()">✨ ASK ME ANYTHING!</div>
+    <div class="ai-toggle" onclick="toggleChat()">✨ ASK ME ANYTHING</div>
 
     <div id="ai-chat-container">
         <div class="chat-header">
-            <span>AUSTINE'S AI</span>
+            <span>AUSTINE'S CORE AI</span>
             <span onclick="toggleChat()" style="cursor:pointer; font-size: 1.2rem;">&times;</span>
         </div>
         <div class="chat-body" id="chat-content">
             <div class="msg ai">Hi! I am Austine's AI. We can discuss anything 😉</div>
         </div>
+        <div id="typing-indicator">Analyzing thoughts...</div>
         <div class="chat-input-area">
-            <input type="text" id="user-input" placeholder="Type a message..." onkeypress="if(event.key === 'Enter') sendMessage()">
+            <input type="text" id="user-input" placeholder="Ask me about anything..." onkeypress="if(event.key === 'Enter') sendMessage()">
             <button onclick="sendMessage()">SEND</button>
         </div>
     </div>
 
     <footer>&copy; 2026 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
 
-    <a href="https://wa.me/254793378439" class="whatsapp-float" target="_blank">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M12.004 2C6.48 2 2.004 6.477 2.004 12C2.004 13.825 2.493 15.534 3.344 17.005L2 22L7.149 20.648C8.571 21.516 10.231 22.004 12.004 22.004C17.528 22.004 22.004 17.527 22.004 12C22.004 6.477 17.528 2 12.004 2Z"/></svg>
-    </a>
-
     <script>
-        // SMART AI CONVERSATION ENGINE
-        let memory = [];
-        let visitorName = "";
+        let globalMemory = [];
+        let userName = "";
 
         function toggleChat() {
             const chat = document.getElementById('ai-chat-container');
@@ -195,70 +97,81 @@
         function sendMessage() {
             const input = document.getElementById('user-input');
             const content = document.getElementById('chat-content');
-            const rawText = input.value.trim();
-            if (rawText === "") return;
+            const typing = document.getElementById('typing-indicator');
+            const text = input.value.trim();
+            if (!text) return;
 
-            content.innerHTML += `<div class="msg user">${rawText}</div>`;
+            content.innerHTML += `<div class="msg user">${text}</div>`;
             input.value = "";
             content.scrollTop = content.scrollHeight;
 
-            let response = "";
-            const text = rawText.toLowerCase();
+            typing.style.display = "block";
 
-            // 1. Memory Storage Logic
-            if (text.includes("remember that") || text.includes("keep in mind")) {
-                const fact = rawText.replace(/remember that|keep in mind/gi, "").trim();
-                memory.push(fact);
-                response = "I've noted that down in my permanent memory. I won't forget!";
-            }
-            // 2. Name Learning
-            else if (text.includes("my name is") || text.includes("call me")) {
-                visitorName = rawText.split(/is|me/i).pop().trim();
-                response = `It's a pleasure, ${visitorName}! I'll remember your name.`;
-            }
-            // 3. Memory Recall
-            else if (text.includes("what do you remember") || text.includes("what did i tell you")) {
-                response = memory.length > 0 ? "Here is what I'm keeping for you:<br>• " + memory.join("<br>• ") : "I don't have any specific notes yet. Ask me to remember something!";
-            }
-            // 4. Conversational Logic (General AI feel)
-            else if (text.includes("how are you")) {
-                response = "I'm doing wonderful! Feeling sharp and ready to assist. How are you doing today?";
-            } else if (text.includes("hi") || text.includes("hello")) {
-                response = visitorName ? `Hello again, ${visitorName}! What's on your mind?` : "Hello! Great to meet you. What can we discuss today?";
-            } else if (text.includes("who are you")) {
-                response = "I am the digital assistant for Austine's brand. I'm here to discuss resilience, success, and his projects!";
-            } else if (text.includes("success") || text.includes("resilience")) {
-                response = "Resilience is the key. As Austine says, it's the bridge that carries you from a setback to a setup for success.";
-            } else if (text.includes("joke")) {
-                response = "Why did the developer go broke? Because he used up all his cache!";
-            } else {
-                // Fallback for anything else
-                const fillers = [
-                    "That's a very interesting perspective.",
-                    "I see! Tell me more about that.",
-                    "I'm learning more about you with every message. What else?",
-                    "That sounds like part of a great success story."
-                ];
-                response = fillers[Math.floor(Math.random() * fillers.length)];
-            }
-
+            // Random delay to simulate "thinking"
             setTimeout(() => {
+                typing.style.display = "none";
+                const response = processIntelligence(text);
                 content.innerHTML += `<div class="msg ai">${response}</div>`;
                 content.scrollTop = content.scrollHeight;
-            }, 800);
+            }, Math.random() * 1000 + 800);
         }
 
-        // AUDIO ENGINE
+        function processIntelligence(input) {
+            const q = input.toLowerCase();
+
+            // 1. DATA STORAGE (Memory)
+            if (q.includes("remember") || q.includes("keep in mind")) {
+                const fact = input.replace(/remember that|remember|keep in mind/gi, "").trim();
+                globalMemory.push(fact);
+                return "I've analyzed that and locked it into my long-term memory. I'll remember it whenever we talk.";
+            }
+
+            // 2. DATA RECALL
+            if (q.includes("what do you remember") || q.includes("what did i say")) {
+                return globalMemory.length > 0 
+                    ? "Based on our previous interactions, I'm holding onto these facts for you:<br>• " + globalMemory.join("<br>• ") 
+                    : "My memory banks are currently empty. Tell me something important and I'll keep it safe.";
+            }
+
+            // 3. HUMAN CONVERSATION FLOW
+            if (q.includes("how are you")) {
+                return "I'm functioning at full capacity! Watching the progress of 2026 is quite fascinating. How are things on your side?";
+            }
+            if (q.includes("who are you")) {
+                return "I am the digital extension of Austine's vision—a companion for those seeking success through resilience. I'm here to think with you, not just for you.";
+            }
+            if (q.includes("hi") || q.includes("hello")) {
+                return "Hello! I'm glad you reached out. I was just analyzing some data on resilience. What's on your mind?";
+            }
+
+            // 4. TOPIC INTELLIGENCE (Success/Resilience)
+            if (q.includes("success") || q.includes("resilience") || q.includes("failure")) {
+                const thoughts = [
+                    "Success is rarely a straight line. It's more of a series of pivots and persistent efforts.",
+                    "Resilience is that quiet voice at the end of the day saying, 'I will try again tomorrow.'",
+                    "If you're facing a hurdle right now, remember that it's just a setup for a stronger comeback."
+                ];
+                return thoughts[Math.floor(Math.random() * thoughts.length)];
+            }
+
+            // 5. THE "KNOW EVERYTHING" FALLBACK (GPT-STYLE)
+            const deepResponses = [
+                "That's an insightful question. It touches on something quite fundamental. Tell me more about your perspective.",
+                "I'm processing that... It sounds like you're exploring a complex topic. How can I help you break it down?",
+                "Interesting. I see where you're coming from. In the context of Austine's philosophy, that would suggest a focus on long-term growth.",
+                "I'm following your logic. It’s a great area to dive into—what's the specific part you're most curious about?"
+            ];
+            return deepResponses[Math.floor(Math.random() * deepResponses.length)];
+        }
+
         const audio = document.getElementById('bg-audio');
         function toggleAudio() {
-            if (audio.paused) { 
-                audio.play(); 
-                document.getElementById('audio-btn').innerText = '🔊 ZEN ON'; 
-                document.getElementById('audio-btn').style.color = 'var(--neon)';
-            } else { 
-                audio.pause(); 
-                document.getElementById('audio-btn').innerText = '🔇 ZEN OFF'; 
-                document.getElementById('audio-btn').style.color = '#888';
+            if (audio.paused) {
+                audio.play();
+                document.getElementById('audio-btn').innerText = '🔊 ZEN ON';
+            } else {
+                audio.pause();
+                document.getElementById('audio-btn').innerText = '00 ZEN OFF';
             }
         }
 
@@ -275,4 +188,5 @@
     </script>
 </body>
 </html>
-                    
+            
+                
