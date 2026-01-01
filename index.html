@@ -6,220 +6,181 @@
     <title>OGUMA AUSTINE | Resilience & Success</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
-            --accent: #b8860b;
-            --muted: #f9f9f9;
-        }
+        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --neon: #00f3ff; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 800px; opacity: 0.2; z-index: -1; pointer-events: none; }
 
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Hero Background Image Handling */
-        .hero {
-            position: relative;
-            padding: 10% 10%;
-            text-align: center;
-            background: url('austine.jpg') no-repeat center center;
-            background-size: cover;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* Fixed Navigation Layout */
+        nav { 
+            padding: 0.8rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
             align-items: center;
+            border-bottom: 1px solid #eee; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
         }
-
-        /* Overlay to ensure text readability over the image */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255, 255, 255, 0.82);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        header nav {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            padding: 2.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-            z-index: 10;
-        }
-
-        .logo {
+        
+        .logo { 
             font-family: 'Bodoni Moda', serif;
-            font-size: 1.5rem;
-            font-weight: 900;
-            font-style: italic;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 1.2rem; /* Scaled down for mobile safety */
             color: #000;
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-style: italic;
+            white-space: nowrap;
+            text-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
         }
 
-        .date-dash {
-            font-family: 'JetBrains Mono', monospace;
+        .neon-dashboard { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.7rem; 
+            background: #000; 
+            padding: 4px 10px; 
+            border-radius: 4px;
+            color: var(--neon);
+            text-shadow: 0 0 5px var(--neon);
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+
+        /* Hero */
+        .hero { padding: 15% 10% 10% 10%; text-align: center; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; margin-bottom: 1rem; color: #000; }
+
+        /* Sleek Thin Neon Strip */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
             background: #000;
-            color: #00f3ff;
-            padding: 6px 16px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 8px 0; /* Thin strip */
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin: 20px 0;
-            line-height: 1.1;
-            color: #000;
-        }
-
-        .subtitle {
+        .marquee-text { display: inline-block; white-space: nowrap; animation: marquee 15s linear infinite; }
+        .marquee-text a {
             font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.9rem;
+            font-size: 0.9rem; /* Smaller text for the thin strip */
             font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 35px;
-            padding: 16px 45px;
-            background: #1a1a1a;
-            color: #fff;
+            color: var(--accent);
             text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            border-radius: 4px;
-            transition: 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .cta-button:hover {
-            background: #fff;
-            color: #1a1a1a;
-            border: 1px solid #1a1a1a;
-        }
-
-        .quote-section {
-            padding: 100px 10%;
-            background: var(--muted);
-            text-align: center;
-        }
-
-        .quote-card {
-            background: #fff;
-            padding: 60px 40px;
-            border-radius: 4px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.04);
-            max-width: 850px;
-            margin: 0 auto;
-            border-top: 3px solid var(--accent);
-        }
-
-        blockquote {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-style: italic;
-            margin: 0;
-            color: #333;
-        }
-
-        cite {
-            display: block;
-            margin-top: 25px;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent);
-            font-style: normal;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-        }
-
-        footer {
-            padding: 50px 10%;
-            text-align: center;
-            border-top: 1px solid #eee;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            color: #999;
-            letter-spacing: 2px;
+            padding-right: 30px;
             text-transform: uppercase;
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            .hero { padding: 40% 5% 20% 5%; }
-            header nav { padding: 1.5rem 5%; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Official WhatsApp Icon */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 20px;
+            background-color: #25d366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; animation: whatsapp-grow 2s infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes whatsapp-grow {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .quote-card { background: rgba(255, 255, 255, 0.85); padding: 2.5rem 1.5rem; margin: 0 8% 40px 8%; border-radius: 12px; border-top: 3px solid var(--accent); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .btn { display: inline-block; padding: 0.8rem 1.8rem; background: var(--text); color: white; text-decoration: none; border-radius: 4px; font-weight: 600; margin-top: 1rem; border: none; font-size: 0.9rem; }
+        
+        footer { padding: 2rem; text-align: center; color: #999; font-size: 0.7rem; border-top: 1px solid #eee; }
+
+        @media (min-width: 768px) {
+            .logo { font-size: 1.8rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .neon-dashboard { font-size: 0.8rem; padding: 5px 15px; }
         }
     </style>
 </head>
 <body>
 
+    <img src="austine.jpg" alt="Watermark" class="watermark">
+
+    <nav>
+        <a href="#" class="logo">OGUMA AUSTINE</a>
+        <div class="neon-dashboard" id="live-dashboard">...</div>
+    </nav>
+
     <header class="hero">
-        <nav>
-            <a href="#" class="logo">OGUMA AUSTINE</a>
-            <div class="date-dash" id="live-clock">...</div>
-        </nav>
-        
-        <div class="hero-content">
-            <div class="subtitle" id="time-greeting">GOOD MORNING</div>
-            <h1>Resilience is the <br>Bridge to Success.</h1>
-            <p style="color: #555; font-size: 1.15rem; max-width: 600px; margin: 0 auto;">Mindset shifts to help you cross the finish line.</p>
-            <a href="#projects" class="cta-button">Get Started Now</a>
-        </div>
+        <span id="greeting" style="color:var(--accent); letter-spacing: 2px; font-weight:700; text-transform: uppercase; font-size: 0.8rem;">WELCOME</span>
+        <h1>Resilience is the <br>Bridge to Success.</h1>
+        <p style="font-size: 0.95rem; color: #666;">Mindset shifts to help you cross the finish line.</p>
+        <button onclick="window.location.href='https://wa.me/254793378439'" class="btn">Get Started Now</button>
     </header>
 
-    <section class="quote-section">
-        <div class="quote-card">
-            <blockquote>"Hardships prepare ordinary people for extraordinary destinies."</blockquote>
-            <cite>— DAILY INSIGHT BY AUSTINE</cite>
+    <div class="quote-card">
+        <div id="quote" style="font-size: 1.1rem; font-style: italic; min-height: 50px;">"The path to success is to take massive, determined action."</div>
+        <p style="color:var(--accent); font-weight:600; font-size:0.7rem; margin-top:1rem; letter-spacing: 1px;">— DAILY INSIGHT BY AUSTINE</p>
+        <button class="btn" style="background:none; border:1px solid #ddd; color:#888; font-size:0.65rem; border-radius:20px; padding: 0.5rem 1rem;" onclick="newQuote()">NEW MOTIVATION</button>
+    </div>
+
+    <section class="content" style="text-align: center;">
+        <h2 style="font-family:'Playfair Display'; font-size: 2rem;">My Mission</h2>
+        <p style="max-width: 85%; margin: 0 auto; font-size: 0.9rem; color: #444;">I believe every setback is a setup for a comeback. Develop the mental toughness you need today.</p>
+        
+        <div class="marquee-container">
+            <div class="marquee-text">
+                <a href="https://wa.me/254793378439">LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • </a>
+                <a href="https://wa.me/254793378439">LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • LET'S CONNECT • </a>
+            </div>
         </div>
     </section>
 
-    <footer>
-        &copy; 2026 OGUMA AUSTINE. BUILT FOR THE RESILIENT.
-    </footer>
+    <footer>&copy; 2025 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
+
+    <a href="https://wa.me/254793378439" class="whatsapp-float" target="_blank">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.004 2C6.48 2 2.004 6.477 2.004 12C2.004 13.825 2.493 15.534 3.344 17.005L2 22L7.149 20.648C8.571 21.516 10.231 22.004 12.004 22.004C17.528 22.004 22.004 17.527 22.004 12C22.004 6.477 17.528 2 12.004 2ZM17.65 16.435C17.412 17.108 16.324 17.663 15.631 17.788C15.158 17.873 14.536 17.936 12.457 17.073C9.799 15.97 8.08 13.268 7.947 13.092C7.814 12.915 6.857 11.644 6.857 10.33C6.857 9.016 7.52 8.378 7.787 8.103C8.001 7.883 8.356 7.771 8.691 7.771C8.8 7.771 9.001 7.775 9.173 7.783C9.431 7.794 9.561 7.809 9.734 8.225C9.948 8.742 10.471 10.021 10.535 10.154C10.6 10.287 10.665 10.465 10.575 10.643C10.485 10.82 10.412 10.902 10.279 11.056C10.146 11.21 10.016 11.336 9.878 11.496C9.75 11.64 9.605 11.794 9.761 12.062C9.916 12.33 10.453 13.205 11.246 13.911C12.269 14.823 13.1 15.115 13.388 15.234C13.676 15.354 13.847 15.328 14.014 15.138C14.18 14.948 14.734 14.298 14.933 14.012C15.133 13.727 15.333 13.772 15.6 13.872C15.867 13.972 17.284 14.673 17.572 14.817C17.861 14.962 18.053 15.054 18.125 15.178C18.197 15.303 18.197 15.894 17.959 16.567L17.65 16.435Z" fill="white"/>
+        </svg>
+    </a>
 
     <script>
-        function updateClock() {
+        function updateDashboard() {
             const now = new Date();
-            const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-            const datePart = now.toLocaleDateString('en-US', options).toUpperCase();
-            const timePart = now.toLocaleTimeString('en-GB', { hour12: false });
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            const dateStr = now.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
             
-            document.getElementById('live-clock').innerText = `${datePart} | ${timePart}`;
+            document.getElementById('live-dashboard').innerText = `${dateStr.toUpperCase()} | ${timeStr}`;
 
             const hour = now.getHours();
-            let greeting = "GOOD EVENING";
-            if (hour < 12) greeting = "GOOD MORNING";
-            else if (hour < 17) greeting = "GOOD AFTERNOON";
-            
-            document.getElementById('time-greeting').innerText = greeting;
+            let timeGreeting = "GOOD EVENING";
+            if (hour < 12) timeGreeting = "GOOD MORNING";
+            else if (hour < 18) timeGreeting = "GOOD AFTERNOON";
+
+            document.getElementById('greeting').innerText = timeGreeting;
         }
 
-        setInterval(updateClock, 1000);
-        updateClock();
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDashboard();
+            setInterval(updateDashboard, 1000);
+        });
+
+        const insights = ["Success is the sum of small efforts repeated day in and day out.", "Your breakthrough is often just one more attempt away.", "The bridge to success is built with the bricks of daily habits.", "Don't give up. The hardest part of the journey is usually near the end.", "Resilience is not what happens to you, it's how you react to it.", "Believe you can and you're halfway there.", "Action is the foundational key to all success.", "It does not matter how slowly you go as long as you do not stop.", "Everything you’ve ever wanted is on the other side of fear.", "Hardships prepare ordinary people for extraordinary destinies.", "Dream big and dare to fail.", "What you do today can improve all your tomorrows.", "The secret of getting ahead is getting started.", "Opportunities don't happen. You create them.", "Success is walking from failure to failure with no loss of enthusiasm.", "The only limit to our realization of tomorrow will be our doubts of today.", "You don't have to be great to start, but you have to start to be great.", "Keep your face always toward the sunshine.", "Persistence guarantees that results are inevitable.", "Failure is the condiment that gives success its flavor.", "Consistency is more important than perfection.", "Great things never come from comfort zones.", "Success is not final, failure is not fatal.", "Your only limit is your mind.", "Push yourself, because no one else is going to do it for you.", "Sometimes later becomes never. Do it now.", "Success doesn’t just find you. You have to go out and get it.", "The harder you work, the greater you’ll feel when you achieve it.", "Dream it. Wish it. Do it.", "Stop when you're done, not when you're tired.", "Wake up with determination. Go to bed with satisfaction.", "It always seems impossible until it’s done.", "Motivation gets you started. Habit keeps you going.", "You are never too old to dream a new dream.", "Strength comes from overcoming struggles.", "Work hard in silence, let success be your noise.", "A year from now you will wish you had started today.", "The man who moves a mountain begins by carrying small stones.", "Hustle until your idols become your rivals.", "Start where you are. Use what you have.", "The goal is not to be rich, the goal is to be free.", "Be a voice, not an echo."];
+
+        let lastIdx = -1;
+        function newQuote() {
+            const q = document.getElementById('quote');
+            q.style.opacity = 0;
+            setTimeout(() => {
+                let randomIdx;
+                do { randomIdx = Math.floor(Math.random() * insights.length); } while (randomIdx === lastIdx);
+                lastIdx = randomIdx;
+                q.innerText = `"${insights[randomIdx]}"`;
+                q.style.opacity = 1;
+            }, 300);
+        }
     </script>
 </body>
-</html>
-                        
+                                                                                                           </html>                        
