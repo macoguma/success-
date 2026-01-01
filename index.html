@@ -1,48 +1,217 @@
-<div id="new-year-bar" class="neon-container">
-    <div class="neon-line"></div>
-    <div class="neon-content">
-        <span class="sparkle">✨</span> 
-        HAPPY NEW YEAR — 2026! 
-        <span class="sparkle">✨</span>
-    </div>
-    <div class="neon-line"></div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGUMA AUSTINE | Resilience & Success</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #ffffff; --text: #1a1a1a; --accent: #b8860b; --muted: #f9f9f9; --neon: #00f3ff; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 800px; opacity: 0.15; z-index: -1; pointer-events: none; }
 
-<style>
-    .neon-container {
-        background: #000;
-        padding: 15px 0;
-        text-align: center;
-        overflow: hidden;
-        border-bottom: 1px solid rgba(0, 243, 255, 0.3);
-    }
-    .neon-content {
-        font-family: 'JetBrains Mono', monospace;
-        color: #fff;
-        font-size: 1.1rem;
-        letter-spacing: 4px;
-        text-shadow: 0 0 5px #fff, 0 0 10px var(--neon), 0 0 20px var(--neon);
-        animation: pulse-glow 2s infinite alternate;
-    }
-    .neon-line {
-        height: 2px;
-        background: var(--neon);
-        width: 100%;
-        box-shadow: 0 0 15px var(--neon);
-        opacity: 0.6;
-        margin: 8px 0;
-    }
-    .sparkle {
-        display: inline-block;
-        animation: spin 3s linear infinite;
-    }
-    @keyframes pulse-glow {
-        from { opacity: 0.8; transform: scale(0.98); }
-        to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-</style>
-             
+        /* Navigation */
+        nav { 
+            padding: 0.8rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-bottom: 1px solid #eee; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+        }
+        
+        .logo { 
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.2rem;
+            color: #000;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .neon-dashboard { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.7rem; 
+            background: #000; 
+            padding: 4px 10px; 
+            border-radius: 4px;
+            color: var(--neon);
+            text-shadow: 0 0 5px var(--neon);
+        }
+
+        /* Temporary New Year Bar */
+        .new-year-strip {
+            background: #000;
+            padding: 12px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        .new-year-text {
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-shadow: 0 0 8px var(--neon);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { opacity: 0.7; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Hero & Content */
+        .hero { padding: 12% 10% 8% 10%; text-align: center; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; margin-bottom: 1rem; color: #000; }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+            padding: 8px 0;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
+        }
+        .marquee-text { display: inline-block; white-space: nowrap; animation: marquee 15s linear infinite; }
+        .marquee-text a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-decoration: none;
+            padding-right: 40px;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .quote-card { 
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 2.5rem 1.5rem; 
+            margin: 0 8% 40px 8%; 
+            border-radius: 12px; 
+            border-top: 3px solid var(--accent); 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+        }
+        
+        #quote { transition: opacity 0.4s ease-in-out; }
+
+        .btn { 
+            display: inline-block; 
+            padding: 0.8rem 1.8rem; 
+            background: var(--text); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            font-weight: 600; 
+            margin-top: 1rem; 
+            border: none; 
+            cursor: pointer;
+        }
+        
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 20px;
+            background-color: #25d366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        footer { padding: 2rem; text-align: center; color: #999; font-size: 0.7rem; border-top: 1px solid #eee; }
+
+        @media (min-width: 768px) {
+            .logo { font-size: 1.8rem; }
+            .hero h1 { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="austine.jpg" alt="Oguma Austine" class="watermark">
+
+    <nav>
+        <a href="#" class="logo">OGUMA AUSTINE</a>
+        <div class="neon-dashboard" id="live-dashboard">...</div>
+    </nav>
+
+    <div class="new-year-strip">
+        <div class="new-year-text">✨ HAPPY NEW YEAR — 2026! ✨</div>
+    </div>
+
+    <header class="hero">
+        <span id="greeting" style="color:var(--accent); letter-spacing: 2px; font-weight:700; text-transform: uppercase; font-size: 0.8rem;">WELCOME</span>
+        <h1>Resilience is the <br>Bridge to Success.</h1>
+        <p style="font-size: 0.95rem; color: #666;">Mindset shifts to help you cross the finish line.</p>
+        <button onclick="window.location.href='https://wa.me/254793378439'" class="btn">Get Started Now</button>
+    </header>
+
+    <div class="quote-card">
+        <div id="quote" style="font-size: 1.1rem; font-style: italic; min-height: 50px;">"The path to success is to take massive, determined action."</div>
+        <p style="color:var(--accent); font-weight:600; font-size:0.7rem; margin-top:1rem; letter-spacing: 1px;">— DAILY INSIGHT BY AUSTINE</p>
+        <button class="btn" style="background:none; border:1px solid #ddd; color:#888; font-size:0.65rem; border-radius:20px; padding: 0.5rem 1rem;" onclick="newQuote()">NEW MOTIVATION</button>
+    </div>
+
+    <section class="content" style="text-align: center;">
+        <h2 style="font-family:'Playfair Display'; font-size: 2rem;">My Mission</h2>
+        <p style="max-width: 85%; margin: 0 auto; font-size: 0.9rem; color: #444;">Every setback is a setup for a comeback. Let's build your 2026 resilience together.</p>
+        
+        <div class="marquee-container">
+            <div class="marquee-text">
+                <a href="https://wa.me/254793378439">LET'S CONNECT • </a>
+                <a href="https://wa.me/254793378439">LET'S CONNECT • </a>
+                <a href="https://wa.me/254793378439">LET'S CONNECT • </a>
+                <a href="https://wa.me/254793378439">LET'S CONNECT • </a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer-year">&copy; 2026 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
+
+    <a href="https://wa.me/254793378439" class="whatsapp-float" target="_blank">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M12.004 2C6.48 2 2.004 6.477 2.004 12C2.004 13.825 2.493 15.534 3.344 17.005L2 22L7.149 20.648C8.571 21.516 10.231 22.004 12.004 22.004C17.528 22.004 22.004 17.527 22.004 12C22.004 6.477 17.528 2 12.004 2Z"/></svg>
+    </a>
+
+    <script>
+        function updateDashboard() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            const dateStr = now.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+            
+            document.getElementById('live-dashboard').innerText = `${dateStr.toUpperCase()} | ${timeStr}`;
+
+            const hour = now.getHours();
+            let timeGreeting = hour < 12 ? "GOOD MORNING" : hour < 18 ? "GOOD AFTERNOON" : "GOOD EVENING";
+            document.getElementById('greeting').innerText = timeGreeting;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDashboard();
+            setInterval(updateDashboard, 1000);
+        });
+
+        const insights = [
+            "Success is the sum of small efforts repeated day in and day out.",
+            "Consistency is more important than perfection.",
+            "Your breakthrough is often just one more attempt away.",
+            "The bridge to success is built with the bricks of daily habits.",
+            "Hardships prepare ordinary people for extraordinary destinies."
+        ];
+
+        function newQuote() {
+            const q = document.getElementById('quote');
+            q.style.opacity = 0;
+            setTimeout(() => {
+                const randomIdx = Math.floor(Math.random() * insights.length);
+                q.innerText = `"${insights[randomIdx]}"`;
+                q.style.opacity = 1;
+            }, 300);
+        }
+    </script>
+</body>
+</html>
