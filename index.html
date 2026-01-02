@@ -11,7 +11,7 @@
 
 <style>
 :root{
---bg:#fff;--text:#111;--card:#fff;--accent:#b8860b
+--bg:#ffffff;--text:#111;--card:#ffffff;--accent:#b8860b
 }
 body.dark{
 --bg:#0d0d0d;--text:#f1f1f1;--card:#1a1a1a
@@ -34,7 +34,7 @@ footer{bottom:0;padding:12px;font-size:.6rem;text-align:center}
 
 .wrapper{
 min-height:100vh;background:url('austine.jpg') center/cover no-repeat;
-padding:100px 8% 90px;position:relative
+padding:100px 8% 110px;position:relative
 }
 .wrapper::before{
 content:'';position:absolute;inset:0;background:rgba(255,255,255,.93)
@@ -60,38 +60,39 @@ blockquote{font-family:'Playfair Display';font-style:italic;font-size:1.15rem}
 .btn-black{background:#000;color:#fff}
 .btn-outline{background:#fff;border:1px solid #ddd}
 
+/* WhatsApp */
 .whatsapp-float{
-position:fixed;bottom:80px;right:20px;width:52px;height:52px;
-background:#25d366;border-radius:50%;display:flex;
-align-items:center;justify-content:center;z-index:3000;
-box-shadow:0 6px 20px rgba(0,0,0,.25)
+position:fixed;bottom:85px;right:18px;width:52px;height:52px;
+background:#25d366;border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+z-index:3000;box-shadow:0 6px 20px rgba(0,0,0,.25)
 }
 
+/* Dark toggle */
 .toggle{
-position:fixed;top:80px;right:20px;font-size:.6rem;padding:6px 8px;
-border:1px solid #ccc;cursor:pointer
+position:fixed;top:80px;right:18px;font-size:.6rem;
+padding:6px 8px;border:1px solid #ccc;cursor:pointer
 }
 
-/* MOOD SCANNER */
+/* Mood Scanner */
 .mood-scanner{
-position:fixed;bottom:80px;left:20px;width:120px;height:160px;
+position:fixed;bottom:85px;left:15px;width:100px;height:135px;
 background:var(--card);border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
+box-shadow:0 8px 20px rgba(0,0,0,.2);
 display:flex;flex-direction:column;align-items:center;
-justify-content:center;font-size:.6rem;cursor:pointer;z-index:3000
+justify-content:center;font-size:.55rem;
+z-index:2500;cursor:pointer
 }
 .fingerprint{
-width:60px;height:80px;border:2px dashed var(--accent);
-border-radius:30px;margin-bottom:6px;position:relative;overflow:hidden
+width:55px;height:75px;border:2px dashed var(--accent);
+border-radius:28px;position:relative;overflow:hidden
 }
 .scan-bar{
-position:absolute;width:100%;height:4px;background:var(--accent);
+position:absolute;width:100%;height:3px;background:var(--accent);
 animation:scan 1.2s linear infinite
 }
-@keyframes scan{
-0%{top:0}100%{top:100%}
-}
-.progress{margin-top:5px;font-family:'JetBrains Mono'}
+@keyframes scan{0%{top:0}100%{top:100%}}
+.progress{margin-top:6px;font-family:'JetBrains Mono';text-align:center}
 </style>
 </head>
 
@@ -132,25 +133,29 @@ animation:scan 1.2s linear infinite
 
 <footer>&copy; 2026 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
 
-<!-- REAL WHATSAPP ICON -->
+<!-- WhatsApp -->
 <a href="https://wa.me/254793378439" class="whatsapp-float">
 <svg viewBox="0 0 32 32" width="26" fill="#fff">
-<path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.734 5.47 2.02 7.78L0 32l8.438-2.207A15.93 15.93 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.09a13.05 13.05 0 0 1-6.652-1.828l-.476-.277-5.01 1.312 1.336-4.887-.31-.503A13.03 13.03 0 1 1 16 29.09z"/>
+<path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.734 5.47 2.02 7.78L0 32l8.438-2.207A15.93 15.93 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0z"/>
 </svg>
 </a>
 
-<!-- MOOD SCANNER -->
+<!-- Mood Scanner -->
 <div class="mood-scanner" onclick="startScan()">
 <div class="fingerprint">
-<div class="scan-bar" id="scanBar"></div>
+<div class="scan-bar"></div>
 </div>
-<div class="progress" id="scanText">TAP TO SCAN</div>
+<div class="progress" id="scanText">PLACE FINGER<br>TO SCAN</div>
 </div>
 
+<audio id="scanSound">
+<source src="https://assets.mixkit.co/sfx/preview/mixkit-scanning-sci-fi-905.mp3">
+</audio>
+
 <script>
-/* 1000 QUOTES EACH */
-const buildQuotes=(type)=>Array.from({length:1000},(_,i)=>
-`${type} Insight #${i+1} — Strength grows through intentional effort.`
+/* QUOTES — NO NUMBERS */
+const buildQuotes=t=>Array.from({length:1000},()=> 
+`${t} grows when effort is applied with patience and purpose.`
 );
 
 const insights={
@@ -162,45 +167,55 @@ discipline:buildQuotes("Discipline")
 let currentCategory="resilience";
 
 function generateInsight(){
-const arr=insights[currentCategory];
-document.getElementById('quote-text').innerText=
-`"${arr[Math.floor(Math.random()*arr.length)]}"`;
+const a=insights[currentCategory];
+quoteText.innerText=`"${a[Math.floor(Math.random()*a.length)]}"`;
 }
+function setCategory(c){currentCategory=c;generateInsight();}
 generateInsight();
 
-function setCategory(c){currentCategory=c;generateInsight();}
-
 function shareInsight(){
-const text=document.getElementById('quote-text').innerText;
-window.open(`https://wa.me/?text=${encodeURIComponent(text+" — Oguma Austine")}`);
+window.open(`https://wa.me/?text=${encodeURIComponent(quoteText.innerText+" — Oguma Austine")}`);
 }
 
 function saveAsImage(){
-html2canvas(document.getElementById('capture')).then(c=>{
+html2canvas(capture).then(c=>{
 const a=document.createElement('a');
 a.download='Austine-Insight.png';
 a.href=c.toDataURL();a.click();
 });
 }
 
-/* MOOD SCANNER */
+/* Mood Scanner */
 let scanning=false;
+const moods=[
+"You're feeling mentally focused and quietly motivated. Your thoughts are clear, and you're ready to move forward with intention.",
+"You're experiencing a calm sense of confidence. There is balance in your emotions, and your goals feel within reach.",
+"You're in a reflective but determined state of mind. Challenges feel manageable, and growth feels possible.",
+"You're energized with a renewed sense of purpose. Inner drive is present, and momentum is building steadily."
+];
+
 function startScan(){
 if(scanning)return;
 scanning=true;
 let p=0;
-const moods=["Focused","Motivated","Calm","Driven","Reflective","Resilient"];
-const t=document.getElementById('scanText');
+scanText.innerText="SCANNING...";
+scanSound.play();
 const i=setInterval(()=>{
-p+=5;t.innerText=`SCANNING... ${p}%`;
+p+=5;
+scanText.innerText=`SCANNING... ${p}%`;
 if(p>=100){
 clearInterval(i);
-t.innerText=`Scanning Complete!\nMood: ${moods[Math.floor(Math.random()*moods.length)]}`;
+scanSound.pause();scanSound.currentTime=0;
+scanText.innerText="Scanning Complete!";
+setTimeout(()=>{
+scanText.innerText=moods[Math.floor(Math.random()*moods.length)];
 scanning=false;
+},900);
 }
 },120);
 }
 
+/* UI */
 function toggleMode(){
 document.body.classList.toggle('dark');
 localStorage.setItem('mode',document.body.classList.contains('dark'));
@@ -209,9 +224,8 @@ if(localStorage.getItem('mode')==="true")document.body.classList.add('dark');
 
 function updateClock(){
 const n=new Date();
-document.getElementById('live-clock').innerText=n.toLocaleString();
-document.getElementById('time-greeting').innerText=
-n.getHours()<12?"GOOD MORNING":n.getHours()<17?"GOOD AFTERNOON":"GOOD EVENING";
+liveClock.innerText=n.toLocaleString();
+timeGreeting.innerText=n.getHours()<12?"GOOD MORNING":n.getHours()<17?"GOOD AFTERNOON":"GOOD EVENING";
 }
 setInterval(updateClock,1000);updateClock();
 </script>
