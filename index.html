@@ -71,27 +71,6 @@ box-shadow:0 6px 20px rgba(0,0,0,.25)
 position:fixed;top:80px;right:20px;font-size:.6rem;padding:6px 8px;
 border:1px solid #ccc;cursor:pointer
 }
-
-/* MOOD SCANNER */
-.mood-scanner{
-position:fixed;bottom:80px;left:20px;width:120px;height:160px;
-background:var(--card);border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
-display:flex;flex-direction:column;align-items:center;
-justify-content:center;font-size:.6rem;cursor:pointer;z-index:3000
-}
-.fingerprint{
-width:60px;height:80px;border:2px dashed var(--accent);
-border-radius:30px;margin-bottom:6px;position:relative;overflow:hidden
-}
-.scan-bar{
-position:absolute;width:100%;height:4px;background:var(--accent);
-animation:scan 1.2s linear infinite
-}
-@keyframes scan{
-0%{top:0}100%{top:100%}
-}
-.progress{margin-top:5px;font-family:'JetBrains Mono'}
 </style>
 </head>
 
@@ -139,14 +118,6 @@ animation:scan 1.2s linear infinite
 </svg>
 </a>
 
-<!-- MOOD SCANNER -->
-<div class="mood-scanner" onclick="startScan()">
-<div class="fingerprint">
-<div class="scan-bar" id="scanBar"></div>
-</div>
-<div class="progress" id="scanText">TAP TO SCAN</div>
-</div>
-
 <script>
 /* 1000 QUOTES EACH */
 const buildQuotes=(type)=>Array.from({length:1000},(_,i)=>
@@ -181,24 +152,6 @@ const a=document.createElement('a');
 a.download='Austine-Insight.png';
 a.href=c.toDataURL();a.click();
 });
-}
-
-/* MOOD SCANNER */
-let scanning=false;
-function startScan(){
-if(scanning)return;
-scanning=true;
-let p=0;
-const moods=["Focused","Motivated","Calm","Driven","Reflective","Resilient"];
-const t=document.getElementById('scanText');
-const i=setInterval(()=>{
-p+=5;t.innerText=`SCANNING... ${p}%`;
-if(p>=100){
-clearInterval(i);
-t.innerText=`Scanning Complete!\nMood: ${moods[Math.floor(Math.random()*moods.length)]}`;
-scanning=false;
-}
-},120);
 }
 
 function toggleMode(){
