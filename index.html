@@ -3,20 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OGUMA AUSTINE</title>
+
+<title>Oguma Austine – Resilience, Leadership & Discipline Insights</title>
+
+<!-- SEO: Identity -->
+<meta name="description" content="Oguma Austine is a Kenyan thought leader sharing original insights on resilience, leadership, and disciplined success.">
+<meta name="author" content="Oguma Austine">
+<meta name="keywords" content="Oguma Austine, resilience quotes, leadership insights, discipline mindset">
+
+<!-- Open Graph / WhatsApp -->
+<meta property="og:title" content="Oguma Austine – Resilience, Leadership & Discipline">
+<meta property="og:description" content="Daily original insights by Oguma Austine on resilience, leadership, and disciplined success.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://macoguma.github.io/success-/">
+<meta property="og:image" content="https://macoguma.github.io/success-/austine.jpg">
+<meta property="og:image:alt" content="Oguma Austine – Personal Brand Image">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
 <style>
-:root{
---bg:#fff;--text:#111;--card:#fff;--accent:#b8860b
-}
-body.dark{
---bg:#0d0d0d;--text:#f1f1f1;--card:#1a1a1a
-}
-
+:root{--bg:#fff;--text:#111;--card:#fff;--accent:#b8860b}
+body.dark{--bg:#0d0d0d;--text:#f1f1f1;--card:#1a1a1a}
 *{box-sizing:border-box}
 body,html{margin:0;font-family:Inter;background:var(--bg);color:var(--text)}
 
@@ -36,15 +45,13 @@ footer{bottom:0;padding:12px;font-size:.6rem;text-align:center}
 min-height:100vh;background:url('austine.jpg') center/cover no-repeat;
 padding:100px 8% 90px;position:relative
 }
-.wrapper::before{
-content:'';position:absolute;inset:0;background:rgba(255,255,255,.93)
-}
+.wrapper::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.93)}
 body.dark .wrapper::before{background:rgba(0,0,0,.88)}
 
 .content{max-width:450px;margin:auto;position:relative;z-index:2;text-align:center}
 
 .greeting{font-family:'JetBrains Mono';color:var(--accent);font-size:.7rem;letter-spacing:2px}
-h1{font-family:'Playfair Display';font-size:2rem}
+h1{font-family:'Playfair Display';font-size:1.9rem}
 
 .quote-card{
 background:var(--card);padding:30px 20px;border-radius:12px;
@@ -87,7 +94,7 @@ border:1px solid #ccc;cursor:pointer
 <div class="content">
 
 <div class="greeting" id="time-greeting"></div>
-<h1>Resilience is the Bridge to Success.</h1>
+<h1>Oguma Austine – Resilience, Leadership & Discipline Insights</h1>
 
 <div class="quote-card" id="capture">
 <button class="save-btn" onclick="saveAsImage()">⬇️</button>
@@ -111,60 +118,75 @@ border:1px solid #ccc;cursor:pointer
 
 <footer>&copy; 2026 OGUMA AUSTINE. BUILT FOR THE RESILIENT.</footer>
 
-<!-- REAL WHATSAPP ICON -->
 <a href="https://wa.me/254793378439" class="whatsapp-float">
 <svg viewBox="0 0 32 32" width="26" fill="#fff">
-<path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.734 5.47 2.02 7.78L0 32l8.438-2.207A15.93 15.93 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.09a13.05 13.05 0 0 1-6.652-1.828l-.476-.277-5.01 1.312 1.336-4.887-.31-.503A13.03 13.03 0 1 1 16 29.09z"/>
+<path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.734 5.47 2.02 7.78L0 32l8.438-2.207A15.93 15.93 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0z"/>
 </svg>
 </a>
 
 <script>
-/* 1000 QUOTES EACH */
-const buildQuotes=(type)=>Array.from({length:1000},(_,i)=>
-`${type} Insight #${i+1} — Strength grows through intentional effort.`
-);
-
-const insights={
-resilience:buildQuotes("Resilience"),
-leadership:buildQuotes("Leadership"),
-discipline:buildQuotes("Discipline")
+const insights = {
+  resilience: [
+    "Resilience is built when quitting feels justified.",
+    "Storms reveal strength you didn’t know you had.",
+    "What bends without breaking becomes unstoppable.",
+    "Pain refines purpose when met with courage.",
+    "Resilience is choosing progress despite fear."
+  ],
+  leadership: [
+    "Leadership begins where excuses end.",
+    "A true leader creates clarity in chaos.",
+    "Influence is earned through integrity.",
+    "Leaders lift others before themselves.",
+    "Vision without action remains imagination."
+  ],
+  discipline: [
+    "Discipline is choosing what you want most.",
+    "Consistency defeats motivation every time.",
+    "Discipline is self-respect in action.",
+    "Small habits shape powerful futures.",
+    "Success obeys discipline, not desire."
+  ]
 };
 
 let currentCategory="resilience";
+let lastIndex=-1;
 
 function generateInsight(){
-const arr=insights[currentCategory];
-document.getElementById('quote-text').innerText=
-`"${arr[Math.floor(Math.random()*arr.length)]}"`;
+  const arr=insights[currentCategory];
+  let i;
+  do{i=Math.floor(Math.random()*arr.length);}while(i===lastIndex&&arr.length>1);
+  lastIndex=i;
+  document.getElementById("quote-text").innerText=`"${arr[i]}"`;
 }
 generateInsight();
 
-function setCategory(c){currentCategory=c;generateInsight();}
+function setCategory(c){currentCategory=c;lastIndex=-1;generateInsight();}
 
 function shareInsight(){
-const text=document.getElementById('quote-text').innerText;
-window.open(`https://wa.me/?text=${encodeURIComponent(text+" — Oguma Austine")}`);
+  const t=document.getElementById("quote-text").innerText;
+  window.open(`https://wa.me/?text=${encodeURIComponent(t+" — Oguma Austine")}`);
 }
 
 function saveAsImage(){
-html2canvas(document.getElementById('capture')).then(c=>{
-const a=document.createElement('a');
-a.download='Austine-Insight.png';
-a.href=c.toDataURL();a.click();
-});
+  html2canvas(document.getElementById("capture")).then(c=>{
+    const a=document.createElement("a");
+    a.download="Oguma-Austine-Insight.png";
+    a.href=c.toDataURL();a.click();
+  });
 }
 
 function toggleMode(){
-document.body.classList.toggle('dark');
-localStorage.setItem('mode',document.body.classList.contains('dark'));
+  document.body.classList.toggle("dark");
+  localStorage.setItem("mode",document.body.classList.contains("dark"));
 }
-if(localStorage.getItem('mode')==="true")document.body.classList.add('dark');
+if(localStorage.getItem("mode")==="true")document.body.classList.add("dark");
 
 function updateClock(){
-const n=new Date();
-document.getElementById('live-clock').innerText=n.toLocaleString();
-document.getElementById('time-greeting').innerText=
-n.getHours()<12?"GOOD MORNING":n.getHours()<17?"GOOD AFTERNOON":"GOOD EVENING";
+  const n=new Date();
+  document.getElementById("live-clock").innerText=n.toLocaleString();
+  document.getElementById("time-greeting").innerText=
+    n.getHours()<12?"GOOD MORNING":n.getHours()<17?"GOOD AFTERNOON":"GOOD EVENING";
 }
 setInterval(updateClock,1000);updateClock();
 </script>
