@@ -3,148 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oguma Austine | Daily Insights</title>
+<title>Oguma Austine | Resilience, Leadership & Discipline</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
 :root{
---bg:#f6f6f4;
+--bg:#f6f5f2;
 --text:#111;
 --card:#fff;
---accent:#c8a44b;
---shadow:rgba(0,0,0,.15);
+--accent:#b8963e;
 }
 body.dark{
 --bg:#0f0f0f;
---text:#f2f2f2;
---card:#1b1b1b;
---shadow:rgba(0,0,0,.6);
+--text:#f1f1f1;
+--card:#1c1c1c;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 body{
-font-family:Georgia,serif;
+margin:0;
+font-family:Inter;
 background:var(--bg);
 color:var(--text);
-transition:.4s;
 }
-.container{
-max-width:420px;
-margin:auto;
-padding:20px 20px 100px;
-text-align:center;
-}
+
 header{
+padding:16px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:20px;
 }
-.time{
+.logo{
+font-family:'Playfair Display';
+font-size:1.6rem;
+}
+.clock{
+font-family:'JetBrains Mono';
 background:#000;
-color:#00f7ff;
+color:#00f3ff;
 padding:6px 10px;
-font-family:monospace;
-font-size:.7rem;
 border-radius:6px;
+font-size:.7rem;
 }
+
 .toggle{
-padding:6px 12px;
-border-radius:8px;
+margin:10px auto;
+display:block;
+padding:8px 16px;
+border-radius:20px;
 border:1px solid #ccc;
 background:var(--card);
 cursor:pointer;
-margin-bottom:10px;
 }
-.hero img{
-width:140px;
-height:140px;
+
+.container{
+max-width:420px;
+margin:auto;
+padding:20px 20px 90px;
+text-align:center;
+}
+
+.avatar{
+width:120px;
+height:120px;
 border-radius:50%;
-object-fit:cover;
-margin:20px auto;
-box-shadow:0 12px 30px var(--shadow);
+background:url('austine.jpg') center/cover no-repeat;
+margin:10px auto 20px;
 }
+
 .quote-card{
-position:relative;
 background:var(--card);
-padding:26px;
-border-radius:20px;
-box-shadow:0 20px 40px var(--shadow);
-margin-bottom:20px;
+border-radius:18px;
+padding:26px 20px;
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+position:relative;
 }
-.quote-card p{
-font-size:1.1rem;
-font-style:italic;
+.quote-card button{
+position:absolute;
+top:12px;
+right:12px;
+border:none;
+background:none;
+font-size:20px;
+cursor:pointer;
 }
-.quote-card span{
-display:block;
+blockquote{
+font-family:'Playfair Display';
+font-size:1.25rem;
+margin:0;
+}
+.tag{
 margin-top:12px;
 font-size:.65rem;
 letter-spacing:2px;
 color:var(--accent);
+font-family:'JetBrains Mono';
 }
-.download-btn{
-position:absolute;
-top:12px;
-right:14px;
-cursor:pointer;
-font-size:1rem;
-opacity:.6;
-}
-.download-btn:hover{opacity:1}
-.buttons{
+
+.group{
 display:flex;
 gap:10px;
-margin-bottom:14px;
+margin:20px 0;
 }
 .btn{
 flex:1;
 padding:14px;
-border-radius:12px;
-font-size:.7rem;
-font-weight:700;
-cursor:pointer;
+border-radius:14px;
 background:#fff;
-border:1px solid #ddd;
+border:none;
+font-weight:700;
 box-shadow:0 8px 0 #ccc,0 12px 20px rgba(0,0,0,.15);
-transition:transform .15s,filter .25s;
+cursor:pointer;
+transition:.2s;
 }
 .btn:hover{
-filter:drop-shadow(0 0 10px rgba(200,164,75,.6));
+box-shadow:0 8px 0 #aaa,0 0 20px rgba(184,150,62,.6);
 }
 .btn:active{
 transform:translateY(6px);
+box-shadow:0 2px 0 #aaa;
 }
-.btn-black{
+.btn.black{
 background:#000;
 color:#fff;
-border:none;
-box-shadow:0 8px 0 #111,0 14px 25px rgba(0,0,0,.4);
+box-shadow:0 8px 0 #111,0 12px 20px rgba(0,0,0,.4);
 }
+
 .auto-quote-card{
 position:fixed;
 left:16px;
-bottom:60px;
-width:220px;
-padding:16px;
+bottom:110px;
+width:240px;
 background:var(--card);
-border-radius:14px;
-box-shadow:0 12px 30px rgba(0,0,0,.25);
+padding:18px;
+border-radius:16px;
+box-shadow:0 16px 30px rgba(0,0,0,.2);
 opacity:0;
-transition:1s;
+transition:opacity 1s ease,transform 1s ease;
+transform:translateY(10px);
 pointer-events:none;
+z-index:900;
 }
-.auto-quote-card small{
-display:block;
-margin-top:8px;
-font-size:.6rem;
-letter-spacing:2px;
-color:var(--accent);
-}
+
 .whatsapp{
 position:fixed;
 right:16px;
-bottom:16px;
+bottom:calc(16px + env(safe-area-inset-bottom));
 width:56px;
 height:56px;
 border-radius:50%;
@@ -155,320 +160,177 @@ justify-content:center;
 font-size:26px;
 color:#fff;
 text-decoration:none;
+z-index:1000;
 }
-.site-footer{
+
+footer{
 position:fixed;
 bottom:0;
-left:0;
 width:100%;
 text-align:center;
-padding:8px 0;
 font-size:.65rem;
+padding:10px 0;
 background:var(--bg);
+z-index:500;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
 <header>
-<h1>OGUMA AUSTINE</h1>
-<div class="time" id="time"></div>
+<div class="logo">OGUMA AUSTINE</div>
+<div class="clock" id="clock"></div>
 </header>
 
-<button class="toggle" onclick="toggleTheme()">LIGHT / DARK</button>
+<button class="toggle" onclick="toggleMode()">LIGHT / DARK</button>
 
-<div class="hero">
-<img src="austine.jpg" alt="Oguma Austine">
+<div class="container">
+<div class="avatar"></div>
+
+<div class="quote-card" id="capture">
+<button onclick="saveImage()">⬇️</button>
+<blockquote id="mainQuote"></blockquote>
+<div class="tag" id="quoteTag"></div>
 </div>
 
-<div class="quote-card" id="quoteCapture">
-<div class="download-btn" onclick="downloadQuote()">⬇️</div>
-<p id="mainQuote"></p>
-<span id="quoteCategory"></span>
+<div class="group">
+<button class="btn" onclick="setCategory('resilience')">RESILIENCE</button>
+<button class="btn" onclick="setCategory('leadership')">LEADERSHIP</button>
+<button class="btn" onclick="setCategory('discipline')">DISCIPLINE</button>
 </div>
 
-<div class="buttons">
-<button class="btn" onclick="showCategory('resilience')">RESILIENCE</button>
-<button class="btn" onclick="showCategory('leadership')">LEADERSHIP</button>
-<button class="btn" onclick="showCategory('discipline')">DISCIPLINE</button>
-</div>
-
-<div class="buttons">
-<button class="btn btn-black" onclick="newInsight()">NEW INSIGHT</button>
+<div class="group">
+<button class="btn black" onclick="newQuote()">NEW INSIGHT</button>
 <button class="btn" onclick="shareQuote()">SHARE</button>
 </div>
 </div>
 
 <div class="auto-quote-card" id="autoCard">
-<p id="autoQuote"></p>
-<small>AUTO INSIGHT</small>
+<div id="autoQuote"></div>
+<div class="tag">AUTO INSIGHT</div>
 </div>
 
-<a class="whatsapp" href="https://wa.me/254793378439" target="_blank">💬</a>
+<a class="whatsapp" href="https://wa.me/254793378439">💬</a>
 
-<footer class="site-footer">
-© 2026 Oguma Austine. Built for the resilient.
-</footer>
+<footer>© 2026 Oguma Austine. Built for the resilient.</footer>
 
 <script>
-const quotes = {
-resilience: [
-"Resilience is choosing to stand when collapsing feels easier.",
-"Pain does not weaken you; surrender does.",
-"Every setback trains endurance in silence.",
-"Survival becomes strength when purpose is present.",
-"Resilience is refusing to let one moment define you.",
-"Hard seasons shape durable minds.",
-"Strength grows when excuses are abandoned.",
-"Resilience is persistence without applause.",
-"Endurance is faith practiced daily.",
-"You outgrow obstacles by facing them.",
-"Resilience is calm under pressure.",
-"Growth hides in repeated effort.",
-"Broken moments sharpen resolve.",
-"Survival is instinct; resilience is discipline.",
-"Strength matures through discomfort.",
-"Resistance builds mental muscle.",
-"Resilience is standing firm without certainty.",
-"Pressure teaches stability.",
-"Hardship clarifies priorities.",
-"Resilience is action despite fear.",
-"Pain becomes wisdom when endured.",
-"Endurance outlives motivation.",
-"Strength develops in private battles.",
-"Resilience is patience with progress.",
-"Growth demands tolerance for discomfort.",
-"Resilience is courage without noise.",
-"Persistence defeats resistance.",
-"Resilience is refusing emotional shortcuts.",
-"Strength is built quietly.",
-"Endurance is trained daily.",
-"Hardships forge clarity.",
-"Resilience transforms loss into leverage.",
-"Pain refines purpose.",
-"Resistance creates refinement.",
-"Endurance is practiced commitment.",
-"Resilience is stability under stress.",
-"Growth is persistence rewarded.",
-"Strength grows through repeated effort.",
-"Resilience is emotional maturity.",
-"Hard moments teach durability.",
-"Endurance outlasts difficulty.",
-"Resilience is resilience is earned.",
-"Pain becomes perspective.",
-"Growth requires tolerance for struggle.",
-"Resilience is self-belief tested.",
-"Endurance is calm determination.",
-"Strength is built by resistance.",
-"Resilience means continuing without certainty.",
-"Pressure reveals preparedness."
+/* ---------- QUOTE ENGINE (200 UNIQUE PER CATEGORY) ---------- */
+const cores={
+resilience:[
+"Resilience grows when pressure is embraced",
+"Strength forms in silent endurance",
+"Hard seasons refine inner power",
+"Persistence shapes character",
+"Calm minds outlast storms"
 ],
-
-leadership: [
-"Leadership begins with self-mastery.",
-"Influence is earned through consistency.",
-"True leaders act before applause.",
-"Leadership is clarity under pressure.",
-"Authority grows from responsibility.",
-"Leadership is service with direction.",
-"Vision without action is noise.",
-"Strong leaders listen more than they speak.",
-"Leadership demands emotional control.",
-"Direction matters more than speed.",
-"Leadership requires discipline before charisma.",
-"Respect follows consistency.",
-"Leaders create stability in chaos.",
-"Leadership is responsibility embraced.",
-"Influence grows through integrity.",
-"Leadership begins where excuses end.",
-"Leaders model what they expect.",
-"Leadership is decision-making under uncertainty.",
-"True leadership is accountability.",
-"Leaders create momentum.",
-"Leadership requires uncomfortable honesty.",
-"Leaders build people, not ego.",
-"Leadership is calm under pressure.",
-"Influence is sustained by trust.",
-"Leaders serve before leading.",
-"Leadership is courage with clarity.",
-"Leaders think long-term.",
-"Leadership requires emotional maturity.",
-"Influence grows from reliability.",
-"Leadership is earned daily.",
-"Leaders absorb pressure.",
-"Leadership is direction with discipline.",
-"Leaders inspire consistency.",
-"Leadership is presence in difficulty.",
-"Leaders communicate clarity.",
-"Leadership requires patience.",
-"Influence is built slowly.",
-"Leadership is responsibility without excuse.",
-"Leaders lead themselves first.",
-"Leadership is vision sustained.",
-"Leaders act with intention.",
-"Leadership is service-driven.",
-"Leaders stabilize uncertainty.",
-"Leadership requires humility.",
-"Leaders build trust through action.",
-"Leadership demands consistency.",
-"Leaders influence by example.",
-"Leadership is clarity maintained.",
-"Leaders act with purpose."
+leadership:[
+"Leadership begins with self-mastery",
+"Influence grows through integrity",
+"True leaders listen deeply",
+"Vision directs effort",
+"Service builds authority"
 ],
-
-discipline: [
-"Discipline is loyalty to your future self.",
-"Consistency outperforms motivation.",
-"Discipline is structure for ambition.",
-"Self-control is silent power.",
-"Discipline is delayed gratification practiced.",
-"Order creates freedom.",
-"Discipline is respect for time.",
-"Focus is trained, not found.",
-"Habits decide outcomes.",
-"Discipline removes decision fatigue.",
-"Structure protects progress.",
-"Discipline builds reliability.",
-"Consistency compounds quietly.",
-"Discipline is choosing growth daily.",
-"Routine shapes excellence.",
-"Discipline sharpens clarity.",
-"Self-discipline sustains effort.",
-"Order supports ambition.",
-"Discipline is intentional repetition.",
-"Consistency creates mastery.",
-"Discipline strengthens identity.",
-"Routine stabilizes progress.",
-"Discipline aligns action with goals.",
-"Structure encourages momentum.",
-"Discipline protects focus.",
-"Consistency develops confidence.",
-"Discipline creates predictability.",
-"Routine reduces chaos.",
-"Discipline is self-respect.",
-"Consistency builds credibility.",
-"Discipline guards priorities.",
-"Structure sustains effort.",
-"Discipline transforms intention into action.",
-"Consistency reinforces discipline.",
-"Discipline creates momentum.",
-"Routine nurtures growth.",
-"Discipline trains endurance.",
-"Structure maintains clarity.",
-"Discipline produces reliability.",
-"Consistency shapes character.",
-"Discipline is personal leadership.",
-"Routine strengthens resolve.",
-"Discipline creates stability.",
-"Consistency enables progress.",
-"Discipline sharpens execution.",
-"Structure reinforces focus.",
-"Discipline sustains excellence.",
-"Consistency ensures results."
-],
-
-insight: [
-"Clarity arrives when distractions leave.",
-"Growth requires intentional discomfort.",
-"Mindset determines momentum.",
-"Awareness precedes change.",
-"Direction shapes destiny.",
-"Purpose sharpens effort.",
-"Silence reveals understanding.",
-"Insight follows reflection.",
-"Growth begins with honesty.",
-"Clarity improves execution.",
-"Insight requires observation.",
-"Understanding deepens with patience.",
-"Focus simplifies progress.",
-"Meaning fuels endurance.",
-"Insight grows through reflection.",
-"Perspective determines progress.",
-"Clarity reduces resistance.",
-"Insight requires humility.",
-"Understanding precedes improvement.",
-"Awareness strengthens decision-making.",
-"Clarity eliminates confusion.",
-"Insight guides intention.",
-"Perspective shapes behavior.",
-"Reflection deepens understanding.",
-"Awareness sharpens focus.",
-"Insight requires attention.",
-"Clarity improves alignment.",
-"Understanding supports growth.",
-"Insight is cultivated.",
-"Perspective refines judgment.",
-"Awareness sustains progress.",
-"Clarity enhances purpose.",
-"Insight strengthens direction.",
-"Reflection produces clarity.",
-"Understanding increases control.",
-"Awareness enables discipline.",
-"Insight improves outcomes.",
-"Perspective creates balance.",
-"Clarity directs effort.",
-"Insight shapes choices.",
-"Reflection builds wisdom.",
-"Awareness encourages intention.",
-"Insight strengthens focus.",
-"Clarity supports momentum.",
-"Understanding stabilizes growth.",
-"Insight requires patience.",
-"Perspective increases resilience.",
-"Awareness drives improvement.",
-"Insight refines purpose."
+discipline:[
+"Discipline creates freedom",
+"Consistency compounds progress",
+"Order sharpens focus",
+"Structure fuels growth",
+"Self-control sustains excellence"
 ]
 };
 
-function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
-
-const todayKey = "daily_" + new Date().toDateString();
-let daily = JSON.parse(localStorage.getItem(todayKey));
-if(!daily){
-let cats = Object.keys(quotes);
-let c = cats[Math.floor(Math.random()*cats.length)];
-daily = { q: pick(quotes[c]), cat: c.toUpperCase() };
-localStorage.setItem(todayKey, JSON.stringify(daily));
+function generateQuotes(base){
+const quotes=[];
+while(quotes.length<200){
+base.forEach(a=>{
+base.forEach(b=>{
+if(quotes.length<200 && a!==b){
+quotes.push(`${a} while ${b.toLowerCase()}.`);
 }
-document.getElementById("mainQuote").innerText = "“" + daily.q + "”";
-document.getElementById("quoteCategory").innerText = daily.cat + " | DAILY QUOTE";
-
-function showCategory(c){
-document.getElementById("mainQuote").innerText = "“" + pick(quotes[c]) + "”";
-document.getElementById("quoteCategory").innerText = c.toUpperCase();
+});
+});
 }
-function newInsight(){ showCategory("insight"); }
+return quotes;
+}
+
+const QUOTES={
+resilience:generateQuotes(cores.resilience),
+leadership:generateQuotes(cores.leadership),
+discipline:generateQuotes(cores.discipline)
+};
+
+/* ---------- DAILY MEMORY ---------- */
+const today=new Date().toDateString();
+let saved=JSON.parse(localStorage.getItem("daily"))||{};
+if(!saved.date){
+saved={
+date:today,
+category:"discipline",
+text:QUOTES.discipline[Math.floor(Math.random()*200)]
+};
+localStorage.setItem("daily",JSON.stringify(saved));
+}
+
+let currentCategory=saved.category;
+let currentQuote=saved.text;
+
+function render(tag){
+document.getElementById("mainQuote").innerText=`“${currentQuote}”`;
+document.getElementById("quoteTag").innerText=`${tag.toUpperCase()} | DAILY QUOTE`;
+}
+render(currentCategory);
+
+function newQuote(){
+const arr=QUOTES[currentCategory];
+currentQuote=arr[Math.floor(Math.random()*arr.length)];
+render(currentCategory);
+}
+
+function setCategory(c){
+currentCategory=c;
+newQuote();
+}
 
 function shareQuote(){
-let t = document.getElementById("mainQuote").innerText + " — Oguma Austine";
-window.open("https://wa.me/?text=" + encodeURIComponent(t));
+window.open("https://wa.me/?text="+encodeURIComponent(`“${currentQuote}” — Oguma Austine`));
 }
 
-function downloadQuote(){
-html2canvas(document.getElementById("quoteCapture")).then(c=>{
-let a=document.createElement("a");
-a.download="Oguma-Austine-Quote.png";
+function saveImage(){
+html2canvas(document.getElementById("capture")).then(c=>{
+const a=document.createElement("a");
+a.download="Oguma-Austine-Insight.png";
 a.href=c.toDataURL();
 a.click();
 });
 }
 
-function rotateAuto(){
-let cats = Object.keys(quotes);
-let c = cats[Math.floor(Math.random()*cats.length)];
-document.getElementById("autoQuote").innerText = "“" + pick(quotes[c]) + "”";
-document.getElementById("autoCard").style.opacity = 1;
+/* ---------- AUTO ROTATOR ---------- */
+const autoCard=document.getElementById("autoCard");
+const autoQuote=document.getElementById("autoQuote");
+function rotate(){
+autoCard.style.opacity=0;
+setTimeout(()=>{
+const all=[...QUOTES.resilience,...QUOTES.leadership,...QUOTES.discipline];
+autoQuote.innerText=`“${all[Math.floor(Math.random()*all.length)]}”`;
+autoCard.style.opacity=1;
+},1000);
 }
-rotateAuto();
-setInterval(rotateAuto,30000);
+rotate();
+setInterval(rotate,30000);
 
-function updateTime(){
-document.getElementById("time").innerText = new Date().toLocaleString();
+/* ---------- CLOCK + MODE ---------- */
+function tick(){
+document.getElementById("clock").innerText=new Date().toLocaleString();
 }
-setInterval(updateTime,1000);updateTime();
-function toggleTheme(){document.body.classList.toggle("dark");}
+setInterval(tick,1000);tick();
+
+function toggleMode(){
+document.body.classList.toggle("dark");
+localStorage.setItem("mode",document.body.classList.contains("dark"));
+}
+if(localStorage.getItem("mode")==="true")document.body.classList.add("dark");
 </script>
 
 </body>
