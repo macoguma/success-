@@ -26,12 +26,15 @@ background:var(--bg);
 color:var(--text);
 transition:.4s;
 }
+
+/* MAIN CONTENT */
 .container{
 max-width:420px;
 margin:auto;
-padding:20px;
+padding:20px 20px 90px;
 text-align:center;
 }
+
 header{
 display:flex;
 justify-content:space-between;
@@ -45,19 +48,25 @@ color:#00f7ff;
 padding:6px 10px;
 font-family:monospace;
 font-size:.7rem;
+border-radius:6px;
 }
+
 .toggle{
 padding:6px 12px;
 border-radius:8px;
 border:1px solid #ccc;
 cursor:pointer;
 background:var(--card);
+margin-bottom:10px;
 }
+
 .hero img{
 width:140px;height:140px;border-radius:50%;
 object-fit:cover;margin:20px auto;
 box-shadow:0 12px 30px var(--shadow);
 }
+
+/* QUOTE CARD */
 .quote-card{
 background:var(--card);
 padding:24px;
@@ -65,62 +74,113 @@ border-radius:20px;
 box-shadow:0 20px 40px var(--shadow);
 margin-bottom:20px;
 }
-.quote-card p{font-size:1.1rem;font-style:italic}
+.quote-card p{
+font-size:1.1rem;
+font-style:italic;
+}
 .quote-card span{
 display:block;margin-top:12px;
-font-size:.7rem;letter-spacing:2px;color:var(--accent);
+font-size:.65rem;letter-spacing:2px;
+color:var(--accent);
 }
-.buttons{display:flex;gap:10px;margin-bottom:14px}
+
+/* BUTTONS */
+.buttons{
+display:flex;
+gap:10px;
+margin-bottom:14px;
+}
 .btn{
-flex:1;padding:14px;border-radius:12px;
-font-size:.7rem;font-weight:700;cursor:pointer;
-background:#fff;border:1px solid #ddd;
+flex:1;
+padding:14px;
+border-radius:12px;
+font-size:.7rem;
+font-weight:700;
+cursor:pointer;
+background:#fff;
+border:1px solid #ddd;
 box-shadow:0 8px 0 #ccc,0 12px 20px rgba(0,0,0,.15);
-transition:transform .15s, box-shadow .15s, filter .2s;
+transition:transform .15s, box-shadow .15s, filter .25s;
 }
-.btn:hover{filter:drop-shadow(0 0 10px rgba(200,164,75,.6))}
+.btn:hover{
+filter:drop-shadow(0 0 10px rgba(200,164,75,.6));
+}
 .btn:active{
 transform:translateY(6px);
 box-shadow:0 2px 0 #bbb,0 6px 12px rgba(0,0,0,.2);
 }
+
 .btn-black{
-background:#000;color:#fff;border:none;
+background:#000;
+color:#fff;
+border:none;
 box-shadow:0 8px 0 #111,0 14px 25px rgba(0,0,0,.4);
 }
-.btn-black:hover{filter:drop-shadow(0 0 14px rgba(255,255,255,.5))}
-footer{margin-top:30px;font-size:.7rem;opacity:.7}
+.btn-black:hover{
+filter:drop-shadow(0 0 14px rgba(255,255,255,.5));
+}
 
-/* AUTO QUOTE CARD */
+/* AUTO ROTATING CARD */
 .auto-quote-card{
-position:fixed;left:16px;bottom:90px;
-width:220px;padding:16px;
+position:fixed;
+left:16px;
+bottom:60px;
+width:220px;
+padding:16px;
 background:var(--card);
 border-radius:14px;
 box-shadow:0 12px 30px rgba(0,0,0,.25);
-z-index:999;
-opacity:0;transform:translateY(10px);
+z-index:900;
+opacity:0;
+transform:translateY(10px);
 transition:opacity 1s ease, transform 1s ease;
 pointer-events:none;
 }
 .auto-quote-card small{
-display:block;margin-top:8px;
-font-size:.6rem;letter-spacing:2px;color:var(--accent);
+display:block;
+margin-top:8px;
+font-size:.6rem;
+letter-spacing:2px;
+color:var(--accent);
 }
 
-/* WhatsApp */
+/* WHATSAPP */
 .whatsapp{
-position:fixed;right:16px;bottom:16px;
-width:56px;height:56px;border-radius:50%;
-background:#25D366;display:flex;
-align-items:center;justify-content:center;
-font-size:26px;color:#fff;text-decoration:none;
+position:fixed;
+right:16px;
+bottom:16px;
+width:56px;
+height:56px;
+border-radius:50%;
+background:#25D366;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+color:#fff;
+text-decoration:none;
 box-shadow:0 12px 30px rgba(0,0,0,.3);
 z-index:1000;
+}
+
+/* FOOTER */
+.site-footer{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+text-align:center;
+padding:8px 0;
+font-size:.65rem;
+background:var(--bg);
+color:var(--text);
+z-index:500;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
 <header>
@@ -150,26 +210,31 @@ z-index:1000;
 <button class="btn">SHARE</button>
 </div>
 
-<footer>© 2026 Oguma Austine. Built for the resilient.</footer>
 </div>
 
+<!-- AUTO CARD -->
 <div class="auto-quote-card" id="autoCard">
 <p id="autoQuote"></p>
 <small>AUTO INSIGHT</small>
 </div>
 
+<!-- WHATSAPP -->
 <a class="whatsapp" href="#">💬</a>
 
-<script>
-/* ========= 100 QUOTES PER CATEGORY ========= */
-function generateQuotes(prefix){
-let arr=[];
-for(let i=1;i<=100;i++){
-arr.push(`${prefix} Quote ${i}: Excellence is built through deliberate action.`);
-}
-return arr;
-}
+<!-- FOOTER -->
+<footer class="site-footer">
+© 2026 Oguma Austine. Built for the resilient.
+</footer>
 
+<script>
+/* ========= QUOTES ========= */
+function generateQuotes(prefix){
+let a=[];
+for(let i=1;i<=100;i++){
+a.push(`${prefix} Quote ${i}: Discipline, clarity, and intention shape destiny.`);
+}
+return a;
+}
 const quotes={
 resilience:generateQuotes("Resilience"),
 leadership:generateQuotes("Leadership"),
@@ -178,64 +243,56 @@ insight:generateQuotes("Insight")
 };
 
 /* ========= DAILY QUOTE MEMORY ========= */
-const todayKey="dailyQuote_"+new Date().toDateString();
-
+const todayKey="daily_"+new Date().toDateString();
 function getDailyQuote(){
-let stored=localStorage.getItem(todayKey);
-if(stored){return JSON.parse(stored);}
-
-let categories=Object.keys(quotes);
-let cat=categories[Math.floor(Math.random()*categories.length)];
-let q=quotes[cat][Math.floor(Math.random()*quotes[cat].length)];
-
-let data={quote:q,category:cat.toUpperCase()};
+let d=localStorage.getItem(todayKey);
+if(d)return JSON.parse(d);
+let cats=Object.keys(quotes);
+let c=cats[Math.floor(Math.random()*cats.length)];
+let q=quotes[c][Math.floor(Math.random()*100)];
+let data={q,cat:c.toUpperCase()};
 localStorage.setItem(todayKey,JSON.stringify(data));
 return data;
 }
-
 const daily=getDailyQuote();
-document.getElementById("mainQuote").innerText="“"+daily.quote+"”";
-document.getElementById("quoteCategory").innerText=daily.category+" | DAILY QUOTE";
+document.getElementById("mainQuote").innerText="“"+daily.q+"”";
+document.getElementById("quoteCategory").innerText=daily.cat+" | DAILY QUOTE";
 
-/* ========= CATEGORY SWITCH ========= */
+/* ========= ACTIONS ========= */
 function showCategory(cat){
 let q=quotes[cat][Math.floor(Math.random()*100)];
 document.getElementById("mainQuote").innerText="“"+q+"”";
 document.getElementById("quoteCategory").innerText=cat.toUpperCase();
 }
+function newInsight(){showCategory("insight");}
 
-/* ========= NEW INSIGHT ========= */
-function newInsight(){
-showCategory("insight");
+/* ========= AUTO ROTATE ========= */
+function randomAuto(){
+let c=Object.keys(quotes);
+let k=c[Math.floor(Math.random()*c.length)];
+return quotes[k][Math.floor(Math.random()*100)];
 }
-
-/* ========= AUTO ROTATING CARD ========= */
-function randomAutoQuote(){
-let cats=Object.keys(quotes);
-let c=cats[Math.floor(Math.random()*cats.length)];
-return quotes[c][Math.floor(Math.random()*100)];
-}
-function rotateAutoQuote(){
-const card=document.getElementById("autoCard");
-const text=document.getElementById("autoQuote");
+function rotateAuto(){
+let card=document.getElementById("autoCard");
+let text=document.getElementById("autoQuote");
 card.style.opacity=0;
-card.style.transform="translateY(10px)";
 setTimeout(()=>{
-text.innerText="“"+randomAutoQuote()+"”";
+text.innerText="“"+randomAuto()+"”";
 card.style.opacity=1;
 card.style.transform="translateY(0)";
 },1000);
 }
-rotateAutoQuote();
-setInterval(rotateAutoQuote,30000);
+rotateAuto();
+setInterval(rotateAuto,30000);
 
-/* ========= THEME & TIME ========= */
-function toggleTheme(){document.body.classList.toggle("dark")}
+/* ========= TIME & THEME ========= */
 function updateTime(){
 document.getElementById("time").innerText=new Date().toLocaleString();
 }
 setInterval(updateTime,1000);
 updateTime();
+function toggleTheme(){document.body.classList.toggle("dark");}
 </script>
+
 </body>
 </html>
