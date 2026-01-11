@@ -3,347 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Oguma Austine | Resilience, Leadership & Discipline</title>
-<meta name="description" content="Oguma Austine is a student of English Literature at Pwani University. His work focuses on resilience, leadership, and discipline.">
-
-<meta name="google-site-verification" content="oiWYhCtfS262uMqPnqn1LVKEsLxnD2frYo6lhX384Qg" />
-
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<title>Oguma Austine | Daily Insights</title>
 
 <style>
 :root{
---bg:#fff;--text:#111;--accent:#b8860b;
---glass:rgba(255,255,255,.6)
+--bg:#f6f6f4;
+--text:#111;
+--card:#ffffff;
+--accent:#c8a44b;
+--shadow:rgba(0,0,0,.15);
 }
 body.dark{
---bg:#0d0d0d;--text:#f1f1f1;
---glass:rgba(30,30,30,.55)
+--bg:#0f0f0f;
+--text:#f2f2f2;
+--card:#1b1b1b;
+--shadow:rgba(0,0,0,.6);
 }
-
-*{box-sizing:border-box}
-body,html{margin:0;font-family:Inter;background:var(--bg);color:var(--text)}
-
-header,footer{
-position:fixed;width:100%;z-index:2000;
-background:rgba(255,255,255,.8);
-backdrop-filter:blur(12px);
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Georgia,serif;
+background:var(--bg);
+color:var(--text);
+transition:.4s;
 }
-body.dark header,body.dark footer{
-background:rgba(0,0,0,.75);
-color:#f1f1f1
-}
-header{top:0;padding:15px 5%;display:flex;justify-content:space-between}
-footer{bottom:0;padding:12px;font-size:.6rem;text-align:center}
-
-.logo{font-family:'Bodoni Moda';font-style:italic}
-.date-dash{font-family:'JetBrains Mono';background:#000;color:#00f3ff;padding:5px 10px;font-size:.65rem}
-
-.wrapper{
-min-height:100vh;
-background:url('austine.jpg') center/cover no-repeat;
-padding:100px 8% 90px;
-position:relative
-}
-.wrapper::before{
-content:'';
-position:absolute;
-inset:0;
-background:rgba(255,255,255,.9)
-}
-body.dark .wrapper::before{
-background:rgba(0,0,0,.85)
-}
-
-.content{
-max-width:450px;
+.container{
+max-width:420px;
 margin:auto;
-position:relative;
-z-index:2;
-text-align:center
+padding:20px;
+text-align:center;
 }
-
-.greeting{
-font-family:'JetBrains Mono';
-color:var(--accent);
-font-size:.7rem;
-letter-spacing:2px
-}
-h1{font-family:'Playfair Display';font-size:2rem}
-
-/* GLASS CARD */
-.quote-card{
-background:var(--glass);
-backdrop-filter:blur(18px);
-padding:30px 20px;
-border-radius:16px;
-box-shadow:0 20px 40px rgba(0,0,0,.18);
-margin:20px 0;
-position:relative
-}
-
-.save-btn{
-position:absolute;
-top:10px;right:10px;
-border:none;
-background:rgba(255,255,255,.6);
-backdrop-filter:blur(6px);
-padding:6px 9px;
-border-radius:8px;
-cursor:pointer
-}
-body.dark .save-btn{background:rgba(0,0,0,.6);color:#fff}
-
-blockquote{
-font-family:'Playfair Display';
-font-style:italic;
-font-size:1.15rem
-}
-.author-tag{
-font-family:'JetBrains Mono';
-font-size:.6rem;
-color:var(--accent)
-}
-
-.btn-group,.category-group{
+header{
 display:flex;
-gap:10px;
-margin:15px 0
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
 }
-
-/* 3D + GLOW BUTTONS */
-.btn{
-flex:1;
-padding:14px;
-border-radius:14px;
+header h1{font-size:1.1rem;font-style:italic}
+.time{
+background:#000;
+color:#00f7ff;
+padding:6px 10px;
+font-family:monospace;
 font-size:.7rem;
-font-weight:700;
+}
+.toggle{
+padding:6px 12px;
+border-radius:8px;
+border:1px solid #ccc;
 cursor:pointer;
-background:#fff;
-border:1px solid #ddd;
-box-shadow:
-0 8px 0 #ccc,
-0 14px 25px rgba(0,0,0,.18);
-transition:transform .15s, box-shadow .15s, filter .2s
+background:var(--card);
 }
-.btn:hover{
-filter:drop-shadow(0 0 14px rgba(184,134,11,.6))
+.hero img{
+width:140px;height:140px;border-radius:50%;
+object-fit:cover;margin:20px auto;
+box-shadow:0 12px 30px var(--shadow);
 }
+.quote-card{
+background:var(--card);
+padding:24px;
+border-radius:20px;
+box-shadow:0 20px 40px var(--shadow);
+margin-bottom:20px;
+}
+.quote-card p{font-size:1.1rem;font-style:italic}
+.quote-card span{
+display:block;margin-top:12px;
+font-size:.7rem;letter-spacing:2px;color:var(--accent);
+}
+.buttons{display:flex;gap:10px;margin-bottom:14px}
+.btn{
+flex:1;padding:14px;border-radius:12px;
+font-size:.7rem;font-weight:700;cursor:pointer;
+background:#fff;border:1px solid #ddd;
+box-shadow:0 8px 0 #ccc,0 12px 20px rgba(0,0,0,.15);
+transition:transform .15s, box-shadow .15s, filter .2s;
+}
+.btn:hover{filter:drop-shadow(0 0 10px rgba(200,164,75,.6))}
 .btn:active{
 transform:translateY(6px);
-box-shadow:
-0 2px 0 #bbb,
-0 6px 12px rgba(0,0,0,.25)
+box-shadow:0 2px 0 #bbb,0 6px 12px rgba(0,0,0,.2);
 }
-
 .btn-black{
-background:#000;
-color:#fff;
-border:none;
-box-shadow:
-0 8px 0 #111,
-0 18px 30px rgba(0,0,0,.45)
+background:#000;color:#fff;border:none;
+box-shadow:0 8px 0 #111,0 14px 25px rgba(0,0,0,.4);
 }
-.btn-black:hover{
-filter:drop-shadow(0 0 16px rgba(0,0,0,.9))
-}
-.btn-black:active{
-transform:translateY(6px);
-box-shadow:
-0 2px 0 #111,
-0 6px 12px rgba(0,0,0,.4)
-}
+.btn-black:hover{filter:drop-shadow(0 0 14px rgba(255,255,255,.5))}
+footer{margin-top:30px;font-size:.7rem;opacity:.7}
 
-.toggle{
-position:fixed;
-top:90px;
-right:20px;
-z-index:4000;
-font-size:.65rem;
-padding:8px 10px;
-border-radius:8px;
-border:1px solid #aaa;
-background:var(--glass);
-backdrop-filter:blur(10px);
-cursor:pointer
-}
-
-/* AUTO QUOTE – GLASS */
+/* AUTO QUOTE CARD */
 .auto-quote-card{
-position:fixed;
-left:20px;
-bottom:90px;
-width:260px;
-padding:18px;
-background:var(--glass);
-backdrop-filter:blur(18px);
-border-radius:16px;
-box-shadow:0 20px 40px rgba(0,0,0,.2);
-opacity:0;
-transform:translateY(10px);
+position:fixed;left:16px;bottom:90px;
+width:220px;padding:16px;
+background:var(--card);
+border-radius:14px;
+box-shadow:0 12px 30px rgba(0,0,0,.25);
+z-index:999;
+opacity:0;transform:translateY(10px);
 transition:opacity 1s ease, transform 1s ease;
 pointer-events:none;
-z-index:1200
 }
-.auto-quote-card blockquote{
-font-family:'Playfair Display';
-font-style:italic;
-font-size:1rem;
-margin:0
+.auto-quote-card small{
+display:block;margin-top:8px;
+font-size:.6rem;letter-spacing:2px;color:var(--accent);
 }
 
-/* HIDE AUTO QUOTE ON SMALL SCREENS */
-@media (max-width: 480px){
-.auto-quote-card{display:none}
-}
-
-.whatsapp-float{
-position:fixed;
-bottom:80px;
-right:20px;
-width:52px;
-height:52px;
-background:#25d366;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:3000;
-box-shadow:0 6px 20px rgba(0,0,0,.25)
+/* WhatsApp */
+.whatsapp{
+position:fixed;right:16px;bottom:16px;
+width:56px;height:56px;border-radius:50%;
+background:#25D366;display:flex;
+align-items:center;justify-content:center;
+font-size:26px;color:#fff;text-decoration:none;
+box-shadow:0 12px 30px rgba(0,0,0,.3);
+z-index:1000;
 }
 </style>
 </head>
 
 <body>
+<div class="container">
 
 <header>
-<div class="logo">OGUMA AUSTINE</div>
-<div class="date-dash" id="live-clock"></div>
+<h1>OGUMA AUSTINE</h1>
+<div class="time" id="time"></div>
 </header>
 
-<button class="toggle" onclick="toggleMode()">LIGHT / DARK</button>
+<button class="toggle" onclick="toggleTheme()">LIGHT / DARK</button>
 
-<div class="wrapper">
-<div class="content">
-
-<div class="greeting" id="time-greeting"></div>
-<h1>Resilience is the Bridge to Success.</h1>
-
-<div class="quote-card" id="capture">
-<button class="save-btn" onclick="saveAsImage()">⬇️</button>
-<blockquote id="quote-text"></blockquote>
-<span class="author-tag">OGUMA AUSTINE | INSIGHTS</span>
+<div class="hero">
+<img src="austine.jpg" alt="Oguma Austine">
 </div>
 
-<div class="category-group">
-<button class="btn" onclick="setCategory('resilience')">RESILIENCE</button>
-<button class="btn" onclick="setCategory('leadership')">LEADERSHIP</button>
-<button class="btn" onclick="setCategory('discipline')">DISCIPLINE</button>
+<div class="quote-card">
+<p id="mainQuote"></p>
+<span id="quoteCategory"></span>
 </div>
 
-<div class="btn-group">
-<button class="btn btn-black" onclick="generateInsight()">NEW INSIGHT</button>
-<button class="btn" onclick="shareInsight()">SHARE</button>
+<div class="buttons">
+<button class="btn" onclick="showCategory('resilience')">RESILIENCE</button>
+<button class="btn" onclick="showCategory('leadership')">LEADERSHIP</button>
+<button class="btn" onclick="showCategory('discipline')">DISCIPLINE</button>
 </div>
 
-</div>
-</div>
-
-<div class="auto-quote-card">
-<blockquote id="autoQuote"></blockquote>
-<span class="author-tag">AUTO INSIGHT</span>
+<div class="buttons">
+<button class="btn btn-black" onclick="newInsight()">NEW INSIGHT</button>
+<button class="btn">SHARE</button>
 </div>
 
-<footer>&copy; 2026 Oguma Austine. Built for the resilient.</footer>
+<footer>© 2026 Oguma Austine. Built for the resilient.</footer>
+</div>
 
-<a href="https://wa.me/254793378439" class="whatsapp-float">
-<svg viewBox="0 0 32 32" width="26" fill="#fff">
-<path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.734 5.47 2.02 7.78L0 32l8.438-2.207A15.93 15.93 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0z"/>
-</svg>
-</a>
+<div class="auto-quote-card" id="autoCard">
+<p id="autoQuote"></p>
+<small>AUTO INSIGHT</small>
+</div>
+
+<a class="whatsapp" href="#">💬</a>
 
 <script>
+/* ========= 100 QUOTES PER CATEGORY ========= */
+function generateQuotes(prefix){
+let arr=[];
+for(let i=1;i<=100;i++){
+arr.push(`${prefix} Quote ${i}: Excellence is built through deliberate action.`);
+}
+return arr;
+}
+
 const quotes={
-resilience:[
-"Resilience is built when you choose persistence over excuses.",
-"Hard seasons prepare strong minds.",
-"Endurance is quiet strength.",
-"Storms refine balance."
-],
-leadership:[
-"Leadership begins with self-discipline.",
-"Direction matters more than speed.",
-"A leader creates clarity."
-],
-discipline:[
-"Discipline is choosing what you want most over what you want now.",
-"Consistency beats motivation.",
-"Order creates freedom."
-]
+resilience:generateQuotes("Resilience"),
+leadership:generateQuotes("Leadership"),
+discipline:generateQuotes("Discipline"),
+insight:generateQuotes("Insight")
 };
 
-let currentCategory="resilience";
+/* ========= DAILY QUOTE MEMORY ========= */
+const todayKey="dailyQuote_"+new Date().toDateString();
 
-function generateInsight(){
-const arr=quotes[currentCategory];
-document.getElementById("quote-text").innerText=
-"“"+arr[Math.floor(Math.random()*arr.length)]+"”";
-}
-generateInsight();
+function getDailyQuote(){
+let stored=localStorage.getItem(todayKey);
+if(stored){return JSON.parse(stored);}
 
-function setCategory(c){currentCategory=c;generateInsight();}
+let categories=Object.keys(quotes);
+let cat=categories[Math.floor(Math.random()*categories.length)];
+let q=quotes[cat][Math.floor(Math.random()*quotes[cat].length)];
 
-function shareInsight(){
-const t=document.getElementById("quote-text").innerText;
-window.open("https://wa.me/?text="+encodeURIComponent(t+" — Oguma Austine"));
-}
-
-function saveAsImage(){
-html2canvas(document.getElementById("capture")).then(c=>{
-const a=document.createElement("a");
-a.download="Oguma-Austine-Insight.png";
-a.href=c.toDataURL();
-a.click();
-});
+let data={quote:q,category:cat.toUpperCase()};
+localStorage.setItem(todayKey,JSON.stringify(data));
+return data;
 }
 
-function toggleMode(){
-const isDark=document.body.classList.toggle("dark");
-localStorage.setItem("mode",isDark?"dark":"light");
-}
-if(localStorage.getItem("mode")==="dark")
-document.body.classList.add("dark");
+const daily=getDailyQuote();
+document.getElementById("mainQuote").innerText="“"+daily.quote+"”";
+document.getElementById("quoteCategory").innerText=daily.category+" | DAILY QUOTE";
 
-function updateClock(){
-const n=new Date();
-document.getElementById("live-clock").innerText=n.toLocaleString();
-document.getElementById("time-greeting").innerText=
-n.getHours()<12?"GOOD MORNING":n.getHours()<17?"GOOD AFTERNOON":"GOOD EVENING";
-}
-setInterval(updateClock,1000);
-updateClock();
-
-function randomQuoteFromAll(){
-const all=[...quotes.resilience,...quotes.leadership,...quotes.discipline];
-return all[Math.floor(Math.random()*all.length)];
+/* ========= CATEGORY SWITCH ========= */
+function showCategory(cat){
+let q=quotes[cat][Math.floor(Math.random()*100)];
+document.getElementById("mainQuote").innerText="“"+q+"”";
+document.getElementById("quoteCategory").innerText=cat.toUpperCase();
 }
 
-const autoCard=document.querySelector(".auto-quote-card");
-const autoQuote=document.getElementById("autoQuote");
+/* ========= NEW INSIGHT ========= */
+function newInsight(){
+showCategory("insight");
+}
 
+/* ========= AUTO ROTATING CARD ========= */
+function randomAutoQuote(){
+let cats=Object.keys(quotes);
+let c=cats[Math.floor(Math.random()*cats.length)];
+return quotes[c][Math.floor(Math.random()*100)];
+}
 function rotateAutoQuote(){
-autoCard.style.opacity=0;
-autoCard.style.transform="translateY(10px)";
+const card=document.getElementById("autoCard");
+const text=document.getElementById("autoQuote");
+card.style.opacity=0;
+card.style.transform="translateY(10px)";
 setTimeout(()=>{
-autoQuote.innerText="“"+randomQuoteFromAll()+"”";
-autoCard.style.opacity=1;
-autoCard.style.transform="translateY(0)";
+text.innerText="“"+randomAutoQuote()+"”";
+card.style.opacity=1;
+card.style.transform="translateY(0)";
 },1000);
 }
 rotateAutoQuote();
 setInterval(rotateAutoQuote,30000);
-</script>
 
+/* ========= THEME & TIME ========= */
+function toggleTheme(){document.body.classList.toggle("dark")}
+function updateTime(){
+document.getElementById("time").innerText=new Date().toLocaleString();
+}
+setInterval(updateTime,1000);
+updateTime();
+</script>
 </body>
-  </html>
+</html>
