@@ -61,7 +61,7 @@ cursor:pointer;
 max-width:420px;
 margin:auto;
 text-align:center;
-padding:20px 20px 80px;
+padding:20px 20px 90px;
 }
 
 .avatar{
@@ -133,10 +133,11 @@ color:#fff;
 box-shadow:0 8px 0 #111,0 16px 35px rgba(0,0,0,.5);
 }
 
+/* ✅ AUTO INSIGHT CARD — CORRECTED */
 .auto-card{
 position:fixed;
 left:16px;
-bottom:96px;
+bottom:140px;
 width:240px;
 background:var(--card);
 padding:16px;
@@ -145,8 +146,18 @@ box-shadow:0 14px 35px rgba(0,0,0,.2);
 opacity:0;
 transition:opacity 1s,transform 1s;
 pointer-events:none;
+z-index:600;
 }
 
+/* Extra safety for short screens */
+@media (max-height:700px){
+.auto-card{
+bottom:180px;
+width:220px;
+}
+}
+
+/* ✅ WHATSAPP SAFE */
 .whatsapp{
 position:fixed;
 right:16px;
@@ -217,13 +228,13 @@ background:var(--bg);
 
 <script>
 const quotes={
-resilience:[ /* 100 real resilience quotes */ 
-"Resilience is built when you refuse to quit.","Hard seasons train strong minds.","Growth begins where comfort ends.","Pain refines purpose.","Strength is persistence in disguise.","Resilience is quiet consistency.","Endurance outlasts talent.","Storms shape strength.","Inner strength is earned.","Fall forward.","Pressure builds capacity.","Survival teaches wisdom.","Strong minds bend, not break.","Persistence compounds.","Hard paths build strong legs.","Resistance creates muscle.","Courage grows in hardship.","Strength follows struggle.","Rise every time.","Weather the storm.","Grit wins.","Unseen effort matters.","Progress survives setbacks.","Endurance is power.","Resilience is discipline.","Mental toughness is learned.","Pain passes.","You adapt.","You endure.","You overcome.","Scars prove survival.","Strong roots withstand wind.","Hard days train champions.","Persistence is identity.","Stay standing.","Withstand.","Carry on.","Stay the course.","Resilience is earned.","Unbreakable habits.","Strong spirits persist.","Endurance defines character.","Inner strength compounds.","Rise anyway.","Resist quitting.","Steady effort wins.","Unseen strength matters.","Endure quietly.","Stability is strength.","Growth through adversity.","Survive then thrive.",
+resilience:[
+"Resilience is built when you refuse to quit.","Hard seasons train strong minds.","Growth begins where comfort ends.","Pain refines purpose.","Strength is persistence in disguise.","Resilience is quiet consistency.","Endurance outlasts talent.","Storms shape strength.","Inner strength is earned.","Fall forward.","Pressure builds capacity.","Survival teaches wisdom.","Strong minds bend, not break.","Persistence compounds.","Hard paths build strong legs.","Resistance creates muscle.","Courage grows in hardship.","Strength follows struggle.","Rise every time.","Weather the storm.","Grit wins.","Unseen effort matters.","Progress survives setbacks.","Endurance is power.","Resilience is discipline.","Mental toughness is learned.","Pain passes.","You adapt.","You endure.","You overcome.","Scars prove survival.","Strong roots withstand wind.","Hard days train champions.","Persistence is identity.","Stay standing.","Withstand.","Carry on.","Stay the course.","Resilience is earned.","Unbreakable habits.","Strong spirits persist.","Endurance defines character.","Inner strength compounds.","Rise anyway.","Resist quitting.","Steady effort wins.","Unseen strength matters.","Endure quietly.","Stability is strength.","Growth through adversity.","Survive then thrive."
 ],
-leadership:[ /* 100 leadership quotes */ 
-"Leadership starts with self-mastery.","Leaders act before applause.","Vision precedes movement.","Influence is responsibility.","Example outweighs words.","Serve first.","Clarity guides people.","Consistency earns trust.","Discipline attracts followers.","Character leads.","Leadership is restraint.","Integrity sustains authority.","Responsibility defines leaders.","Direction matters.","Lead yourself.","Decisions define leadership.","Courage earns respect.","Calm builds confidence.","Leaders listen.","Steady vision wins.","Service creates loyalty.","Humility strengthens leadership.","Action inspires.","Accountability builds trust.","Leadership is patience.","Influence is earned.","Clarity removes confusion.","Principles guide leaders.","Leadership is presence.","Firm but fair.","Strength with empathy.","Confidence steadies teams.","Lead by example.","Decisiveness matters.","Vision fuels action.","Consistency builds teams.","Trust compounds.","Leadership is sacrifice.","Purpose unites.","Order empowers.","Leaders remain steady.","Strength with compassion.","Clarity creates momentum.","Guidance before control.","Leadership is stewardship.","Lead forward.","Conviction guides.","Leaders adapt.","Influence grows.","Integrity anchors leadership.","Leadership endures.",
+leadership:[
+"Leadership starts with self-mastery.","Leaders act before applause.","Vision precedes movement.","Influence is responsibility.","Example outweighs words.","Serve first.","Clarity guides people.","Consistency earns trust.","Discipline attracts followers.","Character leads.","Leadership is restraint.","Integrity sustains authority.","Responsibility defines leaders.","Direction matters.","Lead yourself.","Decisions define leadership.","Courage earns respect.","Calm builds confidence.","Leaders listen.","Steady vision wins.","Service creates loyalty.","Humility strengthens leadership.","Action inspires.","Accountability builds trust.","Leadership is patience.","Influence is earned.","Clarity removes confusion.","Principles guide leaders.","Leadership is presence.","Firm but fair.","Strength with empathy.","Confidence steadies teams.","Lead by example.","Decisiveness matters.","Vision fuels action.","Consistency builds teams.","Trust compounds.","Leadership is sacrifice.","Purpose unites.","Order empowers.","Leaders remain steady.","Strength with compassion.","Clarity creates momentum.","Guidance before control.","Leadership is stewardship.","Lead forward.","Conviction guides.","Leaders adapt.","Influence grows.","Integrity anchors leadership.","Leadership endures."
 ],
-discipline:[ /* 100 discipline quotes */ 
+discipline:[
 "Discipline creates freedom.","Consistency beats motivation.","Order sustains progress.","Structure sharpens focus.","Habits shape destiny.","Discipline is delayed reward.","Routine builds excellence.","Self-control creates results.","Consistency compounds.","Focus multiplies effort.","Discipline simplifies life.","Order fuels clarity.","Small habits matter.","Control the day.","Discipline anchors success.","Routine breeds mastery.","Structure reduces chaos.","Commitment beats emotion.","Daily effort wins.","Order creates momentum.","Discipline is self-respect.","Consistency shapes character.","Focus is discipline.","Discipline sustains growth.","Habits define outcomes.","Routine is power.","Self-control frees time.","Structure empowers.","Discipline builds confidence.","Consistency wins long-term.","Daily discipline compounds.","Focus produces results.","Order builds stability.","Discipline sharpens mind.","Habits govern life.","Routine creates rhythm.","Discipline equals freedom.","Commitment matters.","Control impulses.","Structure sustains.","Discipline is clarity.","Consistency forms excellence.","Daily effort counts.","Order removes friction.","Discipline directs energy.","Routine builds reliability.","Self-mastery wins.","Discipline endures.","Consistency prevails.","Order sustains excellence."
 ]
 };
@@ -232,13 +243,8 @@ let category="resilience";
 const q=document.getElementById("quote");
 const tag=document.getElementById("tag");
 
-function dailyIndex(len){
-const d=new Date();
-return (d.getFullYear()+d.getMonth()+d.getDate())%len;
-}
 function newQuote(){
 const arr=quotes[category];
-const i=dailyIndex(arr.length);
 q.innerText="“"+arr[Math.floor(Math.random()*arr.length)]+"”";
 tag.innerText=category.toUpperCase()+" | DAILY QUOTE";
 }
@@ -279,4 +285,4 @@ document.getElementById("clock").innerText=new Date().toLocaleString();
 </script>
 
 </body>
-</html>
+  </html>
