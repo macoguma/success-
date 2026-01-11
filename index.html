@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oguma Austine | Daily Insights</title>
 
+<!-- HTML2CANVAS FOR IMAGE DOWNLOAD -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
 :root{
 --bg:#f6f6f4;
@@ -27,11 +30,11 @@ color:var(--text);
 transition:.4s;
 }
 
-/* MAIN CONTENT */
+/* MAIN */
 .container{
 max-width:420px;
 margin:auto;
-padding:20px 20px 90px;
+padding:20px 20px 100px;
 text-align:center;
 }
 
@@ -43,12 +46,9 @@ margin-bottom:20px;
 }
 header h1{font-size:1.1rem;font-style:italic}
 .time{
-background:#000;
-color:#00f7ff;
-padding:6px 10px;
-font-family:monospace;
-font-size:.7rem;
-border-radius:6px;
+background:#000;color:#00f7ff;
+padding:6px 10px;font-family:monospace;
+font-size:.7rem;border-radius:6px;
 }
 
 .toggle{
@@ -68,8 +68,9 @@ box-shadow:0 12px 30px var(--shadow);
 
 /* QUOTE CARD */
 .quote-card{
+position:relative;
 background:var(--card);
-padding:24px;
+padding:26px 22px;
 border-radius:20px;
 box-shadow:0 20px 40px var(--shadow);
 margin-bottom:20px;
@@ -84,97 +85,75 @@ font-size:.65rem;letter-spacing:2px;
 color:var(--accent);
 }
 
-/* BUTTONS */
-.buttons{
-display:flex;
-gap:10px;
-margin-bottom:14px;
-}
-.btn{
-flex:1;
-padding:14px;
-border-radius:12px;
-font-size:.7rem;
-font-weight:700;
+/* DOWNLOAD ICON */
+.download-btn{
+position:absolute;
+top:12px;
+right:14px;
 cursor:pointer;
-background:#fff;
-border:1px solid #ddd;
+font-size:1rem;
+opacity:.6;
+transition:.2s;
+}
+.download-btn:hover{opacity:1}
+
+/* BUTTONS */
+.buttons{display:flex;gap:10px;margin-bottom:14px}
+.btn{
+flex:1;padding:14px;border-radius:12px;
+font-size:.7rem;font-weight:700;cursor:pointer;
+background:#fff;border:1px solid #ddd;
 box-shadow:0 8px 0 #ccc,0 12px 20px rgba(0,0,0,.15);
 transition:transform .15s, box-shadow .15s, filter .25s;
 }
-.btn:hover{
-filter:drop-shadow(0 0 10px rgba(200,164,75,.6));
-}
+.btn:hover{filter:drop-shadow(0 0 10px rgba(200,164,75,.6))}
 .btn:active{
 transform:translateY(6px);
 box-shadow:0 2px 0 #bbb,0 6px 12px rgba(0,0,0,.2);
 }
 
 .btn-black{
-background:#000;
-color:#fff;
-border:none;
+background:#000;color:#fff;border:none;
 box-shadow:0 8px 0 #111,0 14px 25px rgba(0,0,0,.4);
 }
 .btn-black:hover{
 filter:drop-shadow(0 0 14px rgba(255,255,255,.5));
 }
 
-/* AUTO ROTATING CARD */
+/* AUTO QUOTE */
 .auto-quote-card{
-position:fixed;
-left:16px;
-bottom:60px;
-width:220px;
-padding:16px;
+position:fixed;left:16px;bottom:60px;
+width:220px;padding:16px;
 background:var(--card);
 border-radius:14px;
 box-shadow:0 12px 30px rgba(0,0,0,.25);
 z-index:900;
-opacity:0;
-transform:translateY(10px);
+opacity:0;transform:translateY(10px);
 transition:opacity 1s ease, transform 1s ease;
 pointer-events:none;
 }
 .auto-quote-card small{
-display:block;
-margin-top:8px;
-font-size:.6rem;
-letter-spacing:2px;
-color:var(--accent);
+display:block;margin-top:8px;
+font-size:.6rem;letter-spacing:2px;color:var(--accent);
 }
 
-/* WHATSAPP */
+/* WHATSAPP FLOAT */
 .whatsapp{
-position:fixed;
-right:16px;
-bottom:16px;
-width:56px;
-height:56px;
-border-radius:50%;
+position:fixed;right:16px;bottom:16px;
+width:56px;height:56px;border-radius:50%;
 background:#25D366;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:26px;
-color:#fff;
-text-decoration:none;
+display:flex;align-items:center;justify-content:center;
+font-size:26px;color:#fff;text-decoration:none;
 box-shadow:0 12px 30px rgba(0,0,0,.3);
 z-index:1000;
 }
 
 /* FOOTER */
 .site-footer{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-text-align:center;
-padding:8px 0;
-font-size:.65rem;
-background:var(--bg);
-color:var(--text);
-z-index:500;
+position:fixed;bottom:0;left:0;width:100%;
+text-align:center;padding:8px 0;
+font-size:.65rem;background:var(--bg);
+color:var(--text);z-index:500;
 }
 </style>
 </head>
@@ -194,7 +173,8 @@ z-index:500;
 <img src="austine.jpg" alt="Oguma Austine">
 </div>
 
-<div class="quote-card">
+<div class="quote-card" id="quoteCapture">
+<div class="download-btn" onclick="downloadQuote()">⬇️</div>
 <p id="mainQuote"></p>
 <span id="quoteCategory"></span>
 </div>
@@ -207,7 +187,7 @@ z-index:500;
 
 <div class="buttons">
 <button class="btn btn-black" onclick="newInsight()">NEW INSIGHT</button>
-<button class="btn">SHARE</button>
+<button class="btn" onclick="shareQuote()">SHARE</button>
 </div>
 
 </div>
@@ -219,7 +199,7 @@ z-index:500;
 </div>
 
 <!-- WHATSAPP -->
-<a class="whatsapp" href="#">💬</a>
+<a class="whatsapp" href="https://wa.me/254793378439" target="_blank">💬</a>
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -227,38 +207,38 @@ z-index:500;
 </footer>
 
 <script>
-/* ========= QUOTES ========= */
-function generateQuotes(prefix){
+/* ===== QUOTES ===== */
+function gen(prefix){
 let a=[];
 for(let i=1;i<=100;i++){
-a.push(`${prefix} Quote ${i}: Discipline, clarity, and intention shape destiny.`);
+a.push(`${prefix} Quote ${i}: Purpose, discipline, and clarity shape destiny.`);
 }
 return a;
 }
 const quotes={
-resilience:generateQuotes("Resilience"),
-leadership:generateQuotes("Leadership"),
-discipline:generateQuotes("Discipline"),
-insight:generateQuotes("Insight")
+resilience:gen("Resilience"),
+leadership:gen("Leadership"),
+discipline:gen("Discipline"),
+insight:gen("Insight")
 };
 
-/* ========= DAILY QUOTE MEMORY ========= */
-const todayKey="daily_"+new Date().toDateString();
-function getDailyQuote(){
-let d=localStorage.getItem(todayKey);
-if(d)return JSON.parse(d);
-let cats=Object.keys(quotes);
-let c=cats[Math.floor(Math.random()*cats.length)];
-let q=quotes[c][Math.floor(Math.random()*100)];
-let data={q,cat:c.toUpperCase()};
-localStorage.setItem(todayKey,JSON.stringify(data));
+/* ===== DAILY MEMORY ===== */
+const key="daily_"+new Date().toDateString();
+function dailyQuote(){
+let d=localStorage.getItem(key);
+if(d) return JSON.parse(d);
+let c=Object.keys(quotes);
+let cat=c[Math.floor(Math.random()*c.length)];
+let q=quotes[cat][Math.floor(Math.random()*100)];
+let data={q,cat:cat.toUpperCase()};
+localStorage.setItem(key,JSON.stringify(data));
 return data;
 }
-const daily=getDailyQuote();
-document.getElementById("mainQuote").innerText="“"+daily.q+"”";
-document.getElementById("quoteCategory").innerText=daily.cat+" | DAILY QUOTE";
+const d=dailyQuote();
+document.getElementById("mainQuote").innerText="“"+d.q+"”";
+document.getElementById("quoteCategory").innerText=d.cat+" | DAILY QUOTE";
 
-/* ========= ACTIONS ========= */
+/* ===== ACTIONS ===== */
 function showCategory(cat){
 let q=quotes[cat][Math.floor(Math.random()*100)];
 document.getElementById("mainQuote").innerText="“"+q+"”";
@@ -266,7 +246,23 @@ document.getElementById("quoteCategory").innerText=cat.toUpperCase();
 }
 function newInsight(){showCategory("insight");}
 
-/* ========= AUTO ROTATE ========= */
+/* ===== SHARE ===== */
+function shareQuote(){
+let text=document.getElementById("mainQuote").innerText+" — Oguma Austine";
+window.open("https://wa.me/?text="+encodeURIComponent(text));
+}
+
+/* ===== DOWNLOAD IMAGE ===== */
+function downloadQuote(){
+html2canvas(document.getElementById("quoteCapture")).then(c=>{
+let a=document.createElement("a");
+a.download="Oguma-Austine-Quote.png";
+a.href=c.toDataURL();
+a.click();
+});
+}
+
+/* ===== AUTO ROTATE ===== */
 function randomAuto(){
 let c=Object.keys(quotes);
 let k=c[Math.floor(Math.random()*c.length)];
@@ -285,12 +281,11 @@ card.style.transform="translateY(0)";
 rotateAuto();
 setInterval(rotateAuto,30000);
 
-/* ========= TIME & THEME ========= */
+/* ===== TIME & THEME ===== */
 function updateTime(){
 document.getElementById("time").innerText=new Date().toLocaleString();
 }
-setInterval(updateTime,1000);
-updateTime();
+setInterval(updateTime,1000);updateTime();
 function toggleTheme(){document.body.classList.toggle("dark");}
 </script>
 
